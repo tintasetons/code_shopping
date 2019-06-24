@@ -15,10 +15,10 @@ class ProductsTableSeeder extends Seeder
     {
         $categories = Category::all();
         factory(Product::class, 30)
-            ->create();
-//            ->each(function ($product) use ($categories) {
-//                $categoryId = $categories->random()->id;
-//                $product->categories()->attach($categoryId);
-//        });
+            ->create()
+            ->each(function ($product) use ($categories) {
+                $categoryId = $categories->random()->id;
+                $product->categories()->attach($categoryId);
+        });
     }
 }

@@ -29,7 +29,6 @@ class RouteServiceProvider extends ServiceProvider
 
         parent::boot();
 
-
         Route::bind('category', function ($value) {
             /** @var Collection $collection */
             $collection = Category::whereId($value)->orWhere('slug', $value)->get();
