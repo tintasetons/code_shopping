@@ -3,83 +3,27 @@
 namespace CodeShopping\Http\Controllers\Api;
 
 use CodeShopping\Http\Controllers\Controller;
+use CodeShopping\Http\Resources\ProductInputResource;
 use CodeShopping\Models\ProductInput;
 use Illuminate\Http\Request;
 
 class ProductInputController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        return  ProductInputResource::collection(ProductInput::with('product')->paginate());
+
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \CodeShopping\Models\ProductInput  $productInput
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(ProductInput $productInput)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \CodeShopping\Models\ProductInput  $productInput
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ProductInput $productInput)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \CodeShopping\Models\ProductInput  $productInput
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ProductInput $productInput)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \CodeShopping\Models\ProductInput  $productInput
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(ProductInput $productInput)
     {
         //
     }
