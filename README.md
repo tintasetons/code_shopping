@@ -1,2 +1,4 @@
-# code_shopping
-Curso Code Education
+# Code Shopping - Code Education 
+Fase 1
+
+24-06-2019
