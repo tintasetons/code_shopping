@@ -2,6 +2,7 @@
 
 namespace CodeShopping\Providers;
 
+use CodeShopping\Models\ProductInput;
 use Faker\Generator as FakerGenerator;
 use Faker\Factory as FakerFactory;
 
@@ -17,6 +18,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         \Schema::defaultStringLength(191);
+        ProductInput::created(function ($input) {
+            $product = $input->product;
+            $product->stock += $input->amount;
+            $product->save();
+        });
     }
 
     /**
