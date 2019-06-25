@@ -22,7 +22,7 @@ class ProductPhotoController extends Controller
     public function store(ProductPhotoRequest $request, Product $product)
     {
         $photos = ProductPhoto::createWithPhotosFiles($product->id, $request->photos);
-        return new ProductPhotoCollection($photos, $product);
+        return response()->json(new ProductPhotoCollection($photos, $product),201);
     }
 
     
@@ -32,10 +32,12 @@ class ProductPhotoController extends Controller
         return new ProductPhotoResource($photo);
     }
 
-    
-    public function update(Request $request, ProductPhoto $photo)
+
+    public function update(Request $request, Product $product, ProductPhoto $photo)
     {
-        //
+        $this->assertProductPhoto($product, $photo);
+        $photo = $photo->updateWithPhoto($request->photo);
+        return new ProductPhotoResource($photo);
     }
 
     

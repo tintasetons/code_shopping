@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 
+
 class ProductPhoto extends Model
 {
     const BASE_PATH = 'app/public';
