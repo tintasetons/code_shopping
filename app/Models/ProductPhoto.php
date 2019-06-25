@@ -19,6 +19,12 @@ class ProductPhoto extends Model
         return storage_path("{$path}/{$productId}");
     }
 
+    public function getPhotoUrlAttribute()
+    {
+        $path = self::photosDir($this->product_id);
+        return asset("storage/{$path}/{$this->file_name}");
+    }
+
     public static function uploadFiles($productId, array $files)
     {
         $dir = self::photosDir($productId);
