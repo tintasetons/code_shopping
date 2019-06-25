@@ -11,7 +11,7 @@ class ProductOutputController extends Controller
 {
     public function index()
     {
-        return  ProductOutputResource::collection(ProductOutput::with('product')->paginate());
+        return ProductOutputResource::collection(ProductOutput::with('product')->paginate());
     }
 
     public function store(ProductOutputRequest $request)
