@@ -7,6 +7,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
 
+    Route::patch('products/{product}/restore', 'ProductController@restore');
+
     Route::resource('categories', 'CategoryController', ['except' => ['create', 'edit']]);
 
     Route::resource('products', 'ProductController', ['except' => ['create', 'edit']]);
@@ -57,7 +59,7 @@ Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
 //
 //            Route::get('me', 'AuthController@me')->name('me');
 //
-//            Route::patch('products/{product}/restore', 'ProductController@restore');
+//
 //
 
 //
