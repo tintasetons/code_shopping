@@ -21,6 +21,8 @@ Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
 
     Route::resource('products.photos', 'ProductPhotoController',['except' => ['create', 'edit']]);
 
+    Route::resource('users', 'UserController', ['except' => ['create', 'edit']]);
+
 });
 
 
@@ -73,8 +75,7 @@ Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
 //
 
 //
-//            Route::resource('users', 'UserController',
-//                ['except' => ['create', 'edit']]);
+//
 //
 //            Route::resource('chat_groups', 'ChatGroupController', [
 //                'except' => ['create', 'edit']
