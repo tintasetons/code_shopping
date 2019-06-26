@@ -8,11 +8,6 @@ use Illuminate\Http\Request;
 
 trait OnlyTrashed
 {
-    /**
-     * @param Request $request
-     * @param Builder $query
-     * @return Builder
-     */
     protected function onlyTrashedIfRequested(Request $request, Builder $query)
     {
         if ($request->get('trashed') == 1) {

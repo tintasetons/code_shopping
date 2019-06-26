@@ -2,13 +2,14 @@
 
 namespace CodeShopping\Models;
 
+use CodeShopping\Common\OnlyTrashed;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use Sluggable, softDeletes;
+    use Sluggable, softDeletes, OnlyTrashed;
 
     protected $dates = ['deleted_at'];
     protected $fillable = ['name', 'description', 'price', 'active',];

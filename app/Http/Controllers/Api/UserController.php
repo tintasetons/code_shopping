@@ -2,6 +2,7 @@
 
 namespace CodeShopping\Http\Controllers\Api;
 
+use CodeShopping\Common\OnlyTrashed;
 use CodeShopping\Http\Requests\UserRequest;
 use CodeShopping\Http\Resources\UserResource;
 use CodeShopping\Http\Controllers\Controller;
@@ -11,9 +12,13 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index()
+    use OnlyTrashed;
+
+    public function index(Request $request)
     {
-        $users = User::paginate(100);
+        $query = User::query();
+        $query = $this->onlyTrashedIfRequested($request, $query);
+        $users = $query->paginate(10);
         return UserResource::collection($users);
     }
 
@@ -35,9 +40,10 @@ class UserController extends Controller
         return new UserResource($user);
     }
 
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return response()->json([], 204);
     }
 
 }
