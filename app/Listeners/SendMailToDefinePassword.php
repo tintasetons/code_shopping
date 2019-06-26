@@ -3,6 +3,8 @@
 namespace CodeShopping\Listeners;
 
 use CodeShopping\Events\UserCreatedEvent;
+use CodeShopping\Models\User;
+
 
 class SendMailToDefinePassword
 {
@@ -15,6 +17,11 @@ class SendMailToDefinePassword
     
     public function handle(UserCreatedEvent $event)
     {
-        echo $event->getUser()->name;
+        /** @var User $user */
+        $user = $event->getUser();
+        $token = \Password::broker()->createToken($user);
+
+        $user->sendPasswordResetNotification($token);
+
     }
 }
