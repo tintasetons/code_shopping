@@ -5,6 +5,9 @@ namespace CodeShopping\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * @method static create(array $all)
+ */
 class User extends Authenticatable
 {
     use Notifiable;
@@ -27,9 +30,12 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public static function createCustom($attributes = array())
+
+    public function fill(array $attributes)
     {
         !isset($attributes['password']) ?: $attributes['password'] = bcrypt($attributes['password']);
-        return parent::create($attributes);
+        return parent::fill($attributes);
     }
+
+
 }
