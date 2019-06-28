@@ -1,7 +1,9 @@
 <?php
 
 Route::get('/', function () {
-    return view('welcome');
+    $chave = 'Walter';// JWTAuth::attempt(['email' => 'admin@user.com', 'password' => 'secret']);
+
+    return view('welcome', compact($chave));
 });
 
 \Auth::routes();

@@ -7,6 +7,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
 
+    // Route::post('login', 'AuthController@login')->name('login');
+    Route::name('login')->post('login', 'AuthController@login')->name('login');
+
     Route::patch('products/{product}/restore', 'ProductController@restore');
 
     Route::resource('categories', 'CategoryController', ['except' => ['create', 'edit']]);
@@ -31,7 +34,7 @@ Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
 //
 //Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
 //
-//    Route::post('login', 'AuthController@login')->name('login');
+//
 //
 //    Route::post('login_vendor', 'AuthController@loginFirebase')->name('login_vendor');
 //
