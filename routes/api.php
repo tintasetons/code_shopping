@@ -7,24 +7,28 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
 
-    // Route::post('login', 'AuthController@login')->name('login');
-    Route::name('login')->post('login', 'AuthController@login')->name('login');
+    // Route::name('login')->post('login', 'AuthController@login')->name('login');
+    Route::post('login', 'AuthController@login')->name('login');
 
-    Route::patch('products/{product}/restore', 'ProductController@restore');
+    Route::group(['middleware' => ['auth:api']], function () {
 
-    Route::resource('categories', 'CategoryController', ['except' => ['create', 'edit']]);
+        Route::patch('products/{product}/restore', 'ProductController@restore');
 
-    Route::resource('products', 'ProductController', ['except' => ['create', 'edit']]);
+        Route::resource('categories', 'CategoryController', ['except' => ['create', 'edit']]);
 
-    Route::resource('products.categories', 'ProductCategoryController', ['only' => ['index', 'store', 'destroy']]);
+        Route::resource('products', 'ProductController', ['except' => ['create', 'edit']]);
 
-    Route::resource('inputs', 'ProductInputController', ['only' => ['index', 'store', 'show']]);
+        Route::resource('products.categories', 'ProductCategoryController', ['only' => ['index', 'store', 'destroy']]);
 
-    Route::resource('outputs', 'ProductOutputController', ['only' => ['index', 'store', 'show']]);
+        Route::resource('inputs', 'ProductInputController', ['only' => ['index', 'store', 'show']]);
 
-    Route::resource('products.photos', 'ProductPhotoController',['except' => ['create', 'edit']]);
+        Route::resource('outputs', 'ProductOutputController', ['only' => ['index', 'store', 'show']]);
 
-    Route::resource('users', 'UserController', ['except' => ['create', 'edit']]);
+        Route::resource('products.photos', 'ProductPhotoController', ['except' => ['create', 'edit']]);
+
+        Route::resource('users', 'UserController', ['except' => ['create', 'edit']]);
+
+    });
 
 });
 
@@ -47,7 +51,7 @@ Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
 //    Route::resource('customers', 'CustomerController', ['only' => ['store']]);
 //
 //    //'jwt.refresh'
-//    Route::group(['middleware' => ['auth:api']], function () {
+//
 //
 //        Route::post('logout', 'AuthController@logout')->name('logout');
 //
