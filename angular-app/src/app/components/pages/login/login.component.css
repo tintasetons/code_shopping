@@ -148,7 +148,7 @@ body {
   background-color: #008641;
 }
 
-/* Fallback for Edge
+/* Fallback for Edge Walter
 -------------------------------------------------- */
 
 @supports (-ms-ime-align: auto) {
