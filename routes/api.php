@@ -11,7 +11,10 @@ Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
     Route::post('login', 'AuthController@login')->name('login');
 
     Route::group(['middleware' => ['auth:api']], function () {
+
         Route::post('logout', 'AuthController@logout')->name('logout');
+
+        Route::get('me', 'AuthController@me')->name('me');
 
         Route::patch('products/{product}/restore', 'ProductController@restore');
 
@@ -67,7 +70,7 @@ Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
 //        //IS SELLER
 //        Route::group(['middleware' => ['can:is_seller']], function () {
 //
-//            Route::get('me', 'AuthController@me')->name('me');
+//
 //
 //
 //
