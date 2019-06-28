@@ -67,11 +67,11 @@ class AuthController extends Controller
 //            ], 400);
 //    }
 //
-//    public function logout()
-//    {
-//        \Auth::guard('api')->logout();
-//        return response()->json([], 204);
-//    }
+    public function logout()
+    {
+        \Auth::guard('api')->logout();
+        return response()->json([], 204);
+    }
 //
 //    public function me()
 //    {

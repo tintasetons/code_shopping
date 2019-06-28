@@ -11,6 +11,7 @@ Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
     Route::post('login', 'AuthController@login')->name('login');
 
     Route::group(['middleware' => ['auth:api']], function () {
+        Route::post('logout', 'AuthController@logout')->name('logout');
 
         Route::patch('products/{product}/restore', 'ProductController@restore');
 
@@ -53,7 +54,7 @@ Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
 //    //'jwt.refresh'
 //
 //
-//        Route::post('logout', 'AuthController@logout')->name('logout');
+//
 //
 //        Route::patch('profile', 'UserProfileController@update');
 //
