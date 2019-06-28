@@ -10,7 +10,13 @@ Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
     // Route::name('login')->post('login', 'AuthController@login')->name('login');
     Route::post('login', 'AuthController@login')->name('login');
 
-    Route::group(['middleware' => ['auth:api']], function () {
+    Route::post('refresh', 'AuthController@refresh')->name('refresh');
+
+
+    Route::group(['middleware' => [
+        'auth:api',
+        'jwt.refresh'
+    ]], function () {
 
         Route::post('logout', 'AuthController@logout')->name('logout');
 
@@ -46,7 +52,7 @@ Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
 //
 //    Route::post('login_vendor', 'AuthController@loginFirebase')->name('login_vendor');
 //
-//    Route::post('refresh', 'AuthController@refresh')->name('refresh');
+//
 //
 //    Route::post('customers/phone_numbers', 'CustomerController@requestPhoneNumberUpdate');
 //

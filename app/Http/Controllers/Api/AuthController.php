@@ -68,6 +68,7 @@ class AuthController extends Controller
 //            ], 400);
 //    }
 //
+//
     public function logout()
     {
         \Auth::guard('api')->logout();
@@ -81,9 +82,9 @@ class AuthController extends Controller
         return new UserResource($user);
     }
 //
-//    public function refresh()
-//    {
-//        $token = \Auth::guard('api')->refresh();
-//        return ['token' => $token];
-//    }
+    public function refresh()
+    {
+        $token = \Auth::guard('api')->refresh();
+        return ['token' => $token];
+    }
 }
