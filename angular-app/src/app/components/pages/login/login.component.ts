@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Route, Router, RouterModule} from "@angular/router";
+
 
 @Component({
   selector: 'login',
@@ -14,7 +16,7 @@ export class LoginComponent implements OnInit {
     password: 'secret'
   };
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
   ngOnInit() {
@@ -24,6 +26,7 @@ export class LoginComponent implements OnInit {
   submit() {
     this.http.post<any>('http://localhost:8000/api/login', this.credentials)
       .subscribe((data) => {
+        this.router.navigate(['categories/list']);
         let token = data.token;
         this.http.get('http://localhost:8000/api/categories',
           {
