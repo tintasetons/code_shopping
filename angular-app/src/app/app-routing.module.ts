@@ -5,6 +5,11 @@ import {CategoryListComponent} from "./components/pages/category/category-list/c
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo:'login',
+    pathMatch:'full'
+  },
+  {
     path: 'login', component: LoginComponent
   },
   {
