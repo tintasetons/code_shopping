@@ -28,14 +28,8 @@ export class LoginComponent implements OnInit {
       .subscribe((data) => {
         this.router.navigate(['categories/list']);
         let token = data.token;
-        this.http.get('http://localhost:8000/api/categories',
-          {
-            headers: {
-              'Authorization': `Bearer  ${token}`
-            }
+        window.localStorage.setItem('token',token)
 
-          })
-          .subscribe(data => console.log(data));
       });
     return false;
   }
