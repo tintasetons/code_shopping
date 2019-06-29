@@ -5,7 +5,7 @@
         <div class="card-body">
           <h5 class="card-title text-center">Login</h5>
 
-          <form class="form-signin" (submit)="submit()">
+          <form class="form-signin"  (submit)="submit()" >
             <div><label for="email">E-mail</label></div>
             <div class="form-label-group">
               <div><input
@@ -41,8 +41,10 @@
             </div>
             <button class="btn btn-lg btn-facebook btn-block text-uppercase"
                     type="submit"
+
                    >Entrar
             </button>
+
             <hr class="my-4 ">
             <p >{{credentials|json}}</p>
 
