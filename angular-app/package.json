@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~8.0.3",
     "@angular/platform-browser-dynamic": "~8.0.3",
     "@angular/router": "~8.0.3",
+    "@fortawesome/fontawesome-free-webfonts": "^1.0.9",
     "animate": "^1.0.0",
     "animsition": "^4.0.2",
     "bootstrap": "^4.3.1",
