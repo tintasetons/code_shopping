@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
     email: 'admin@user.com',
     password: 'secret'
   };
+  showMessageError = false;
 
   constructor(private http: HttpClient, private router: Router) {
   }
@@ -26,11 +27,10 @@ export class LoginComponent implements OnInit {
   submit() {
     this.http.post<any>('http://localhost:8000/api/login', this.credentials)
       .subscribe((data) => {
-        this.router.navigate(['categories/list']);
         let token = data.token;
-        window.localStorage.setItem('token',token)
-
-      });
+        window.localStorage.setItem('token', token);
+        this.router.navigate(['categories/list']);
+      }, () => this.showMessageError = true);
     return false;
   }
 }
