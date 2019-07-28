@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use Sluggable, softDeletes, OnlyTrashed;
+    use Sluggable, SoftDeletes, OnlyTrashed;
 
     protected $dates = ['deleted_at'];
     protected $fillable = ['name', 'description', 'price', 'active',];
@@ -36,3 +36,13 @@ class Product extends Model
         return $this->hasMany(ProductPhoto::class);
     }
 }
+
+
+
+
+
+
+
+
+
+
