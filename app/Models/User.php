@@ -11,7 +11,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable, softDeletes, OnlyTrashed;
+    use Notifiable, SoftDeletes, OnlyTrashed;
 
     protected $dates = ['deleted_at'];
 

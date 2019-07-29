@@ -12,13 +12,14 @@ Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
 
     Route::post('refresh', 'AuthController@refresh')->name('refresh');
 
+    Route::post('logout', 'AuthController@logout')->name('logout')->middleware('auth:api');
 
     Route::group(['middleware' => [
-//        'auth:api',
-//        'jwt.refresh'
+        'auth:api',
+        'jwt.refresh'
     ]], function () {
 
-        Route::post('logout', 'AuthController@logout')->name('logout');
+
 
         Route::get('me', 'AuthController@me')->name('me');
 
