@@ -1,13 +1,25 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
-import {AppRoutingModule} from './app-routing.module';
+
 import {AppComponent} from './app.component';
 import {LoginComponent} from './components/pages/login/login.component';
-import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
-import { CategoryListComponent } from './components/pages/category/category-list/category-list.component';
-import { AlertErrorComponent } from './components/bootstrap/alert-error/alert-error.component';
+
+import {Route, RouterModule, Routes} from "@angular/router";
+
+// import {AppRoutingModule} from './app-routing.module';
+
+import {HttpClientModule} from '@angular/common/http';
+import {CategoryListComponent} from './components/pages/category/category-list/category-list.component';
+import {AlertErrorComponent} from './components/bootstrap/alert-error/alert-error.component';
+
+const routes: Routes = [
+  {path: 'login', component: LoginComponent},
+  {path: 'categories/list', component: CategoryListComponent},
+  {path: '', redirectTo: '/login',pathMatch:'full'}
+];
+
 
 @NgModule({
   declarations: [
@@ -18,9 +30,10 @@ import { AlertErrorComponent } from './components/bootstrap/alert-error/alert-er
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    // AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(routes)// , {enableTracing:true})
 
   ],
   providers: [],

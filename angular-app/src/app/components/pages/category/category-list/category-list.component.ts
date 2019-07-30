@@ -10,6 +10,10 @@ export class CategoryListComponent implements OnInit {
 
   categories = [];
 
+  category = {
+    name: ''
+  };
+
   constructor(private http: HttpClient) {
 
   }
@@ -22,6 +26,16 @@ export class CategoryListComponent implements OnInit {
       }
     })
       .subscribe(response => this.categories = response.data);
+  }
+
+  submit() {
+    const token = window.localStorage.getItem('token');
+    this.http.post('http://localhost:8000/api/categories', this.category, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+      .subscribe((category) => console.log(category));
   }
 
 }
