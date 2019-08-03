@@ -38,7 +38,7 @@ export class CategoryListComponent implements OnInit {
     })
       .subscribe((category) => console.log(category));
     this.getCategories();
-    $('#modalExemplo').modal('hide');
+    this.modal.hide();
   }
 
   getCategories() {
@@ -51,11 +51,11 @@ export class CategoryListComponent implements OnInit {
       .subscribe(response => this.categories = response.data);
   }
 
-  showModal(){
+  showModal() {
     this.modal.show();
   }
 
-  hideModal($event){
+  hideModal($event) {
     console.log($event);
   }
 
