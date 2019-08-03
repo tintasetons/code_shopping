@@ -13,6 +13,7 @@ import {Route, RouterModule, Routes} from "@angular/router";
 import {HttpClientModule} from '@angular/common/http';
 import {CategoryListComponent} from './components/pages/category/category-list/category-list.component';
 import {AlertErrorComponent} from './components/bootstrap/alert-error/alert-error.component';
+import { ModalComponent } from './components/bootstrap/modal/modal.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -27,6 +28,7 @@ const routes: Routes = [
     LoginComponent,
     CategoryListComponent,
     AlertErrorComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,

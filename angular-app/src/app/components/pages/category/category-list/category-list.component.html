@@ -37,37 +37,57 @@
       </tbody>
     </table>
   </div>
-
+  <button class="btn btn-sm btn-facebook  " type="button" data-toggle="modal" (click)="showModal()">Nova Categoria -
+    Programação
+  </button>
 </div>
-
-  <form (submit)="submit()">
-    <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Nova Categoria</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-
-            <div class="form-group">
-              <label for="name">Nome</label>
-              <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" required
-                     [(ngModel)]="category.name" placeholder="Crie sua nova Categoria">
-              <small id="emailHelp" class="form-text text-muted">Cadastro de categorias...</small>
-            </div>
-
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-            <button type="submit" class="btn btn-primary">Incluir</button>
-          </div>
-        </div>
+<form (submit)="submit()">
+  <modal>
+    <div modal-title>Nova Categoria</div>
+    <div modal-body>
+      <div class="form-group">
+        <label for="name">Nome</label>
+        <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" required
+               [(ngModel)]="category.name" placeholder="Crie sua nova Categoria">
+        <small id="emailHelp" class="form-text text-muted">Cadastro de categorias...</small>
       </div>
     </div>
-  </form>
+    <div modal-footer>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      <button type="submit" class="btn btn-primary">Incluir</button>
+    </div>
+  </modal>
+</form>
+
+
+<!--<form (submit)="submit()">-->
+<!--<div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"-->
+<!--aria-hidden="true">-->
+<!--<div class="modal-dialog" role="document">-->
+<!--<div class="modal-content">-->
+<!--<div class="modal-header">-->
+<!--<h5 class="modal-title" id="exampleModalLabel">Nova Categoria</h5>-->
+<!--<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">-->
+<!--<span aria-hidden="true">&times;</span>-->
+<!--</button>-->
+<!--</div>-->
+<!--<div class="modal-body">-->
+
+<!--<div class="form-group">-->
+<!--<label for="name">Nome</label>-->
+<!--<input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" required-->
+<!--[(ngModel)]="category.name" placeholder="Crie sua nova Categoria">-->
+<!--<small id="emailHelp" class="form-text text-muted">Cadastro de categorias...</small>-->
+<!--</div>-->
+
+<!--</div>-->
+<!--<div class="modal-footer">-->
+<!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>-->
+<!--<button type="submit" class="btn btn-primary">Incluir</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</form>-->
 
 
