@@ -1,8 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {ModalComponent} from "../../../bootstrap/modal/modal.component";
-
-declare let $;
+import {CategoryNewModalComponent} from "../category-new-modal/category-new-modal.component";
 
 @Component({
   selector: 'category-list',
@@ -13,13 +11,8 @@ export class CategoryListComponent implements OnInit {
 
   categories = [];
 
-  category = {
-    name: ''
-  };
-
-  // @ts-ignore
-  @ViewChild(ModalComponent)
-  modal: ModalComponent;
+  @ViewChild(CategoryNewModalComponent)
+  categoryNewModal: CategoryNewModalComponent;
 
   constructor(private http: HttpClient) {
 
@@ -29,34 +22,23 @@ export class CategoryListComponent implements OnInit {
     this.getCategories();
   }
 
-  submit() {
-    const token = window.localStorage.getItem('token');
-    this.http.post('http://localhost:8000/api/categories', this.category, {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-      .subscribe((category) => console.log(category));
-    this.getCategories();
-    this.modal.hide();
-  }
-
   getCategories() {
     const token = window.localStorage.getItem('token');
-    this.http.get<{ data: Array<any> }>('http://localhost:8000/api/categories', {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-      .subscribe(response => this.categories = response.data);
+    this.http
+      .get<{ data: Array<any> }>
+      ('http://localhost:8000/api/categories', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      .subscribe(response => {
+        this.categories = response.data
+      });
   }
 
-  showModal() {
-    this.modal.show();
+  showModalInsert() {
+     this.categoryNewModal.showModal();
   }
 
-  hideModal($event) {
-    console.log($event);
-  }
 
 }

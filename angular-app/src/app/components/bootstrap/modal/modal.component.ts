@@ -2,7 +2,6 @@ import {Component, ElementRef, EventEmitter, OnInit, Output} from '@angular/core
 
 declare const $;
 
-
 @Component({
   selector: 'modal',
   templateUrl: './modal.component.html',
@@ -10,9 +9,7 @@ declare const $;
 })
 export class ModalComponent implements OnInit {
 
-  @Output()
-  onHide: EventEmitter<Event> = new EventEmitter<Event>();
-
+  @Output() onHide: EventEmitter<Event> = new EventEmitter<Event>();
 
   constructor(private element: ElementRef) {
   }

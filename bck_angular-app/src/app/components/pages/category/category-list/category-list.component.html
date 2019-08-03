@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="my-lg-4">
+    <h5>Listagem de categorias</h5>
+  </div>
+  <div class="my-4">
+    <button class="btn btn-sm btn-facebook  " type="submit" data-toggle="modal" (click)="showModalInsert()"
+            data-target="#modalExemplo">Nova
+      Categoria
+    </button>
+  </div>
+  <div class="row my-4">
+    <table class="table table-striped">
+      <thead>
+
+      <tr>
+        <th style="width: 5%">#</th>
+        <th style="width: 60%">Nome</th>
+        <th style="width: 5%">Ativa</th>
+        <th style="width: 25%">Criado em</th>
+        <th style="width: 10%">Ações</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let category of categories">
+        <td>{{category.id}}</td>
+        <td>{{category.name}}</td>
+        <td style="text-align: center">
+          <i style="font-size: 1em; "
+             class="fas"
+             [ngStyle]="{'color': category.active === true ?  'green' :'red'}"
+             [ngClass]="{'fa-check': category.active, 'fa-times ': !category.active}">
+          </i></td>
+        <td>{{category.created_at.date| date: 'dd/MM/yyyy'}}</td>
+        <td>{{category.id}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
