@@ -17,6 +17,7 @@ export class CategoryListComponent implements OnInit {
     name: ''
   };
 
+  // @ts-ignore
   @ViewChild(ModalComponent)
   modal: ModalComponent;
 
@@ -52,6 +53,10 @@ export class CategoryListComponent implements OnInit {
 
   showModal(){
     this.modal.show();
+  }
+
+  hideModal($event){
+    console.log($event);
   }
 
 }

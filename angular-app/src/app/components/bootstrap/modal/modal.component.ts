@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import {Component, ElementRef, EventEmitter, OnInit, Output} from '@angular/core';
 
 declare const $;
 
@@ -10,10 +10,24 @@ declare const $;
 })
 export class ModalComponent implements OnInit {
 
+  @Output()
+  onHide: EventEmitter<Event> = new EventEmitter<Event>();
+
+
   constructor(private element: ElementRef) {
   }
 
   ngOnInit() {
+      const JqueryElement = this.getJQueryElement();
+
+      JqueryElement.find('modal-title').addClass('modal-title');
+      JqueryElement.find('modal-body').addClass('modal-body');
+      JqueryElement.find('modal-footer').addClass('modal-footer');
+
+      JqueryElement.on('hidden.bs.modal', (e) => {
+        console.log(e);
+        this.onHide.emit(e);
+      })
   }
 
   show() {

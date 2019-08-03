@@ -41,23 +41,24 @@
     Programação
   </button>
 </div>
-<form (submit)="submit()">
-  <modal>
-    <div modal-title>Nova Categoria</div>
-    <div modal-body>
-      <div class="form-group">
-        <label for="name">Nome</label>
-        <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" required
-               [(ngModel)]="category.name" placeholder="Crie sua nova Categoria">
-        <small id="emailHelp" class="form-text text-muted">Cadastro de categorias...</small>
+  <form (submit)="submit()">
+    <modal (onHide)="hideModal()">
+      <h5 modal-title>Nova Categoria</h5>
+      <div modal-body>
+        <div class="form-group">
+          <label for="name">Nome</label>
+          <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" required
+                 [(ngModel)]="category.name" placeholder="Crie sua nova Categoria">
+          <small id="emailHelp" class="form-text text-muted">Cadastro de categorias...</small>
+        </div>
       </div>
-    </div>
-    <div modal-footer>
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-      <button type="submit" class="btn btn-primary">Incluir</button>
-    </div>
-  </modal>
-</form>
+      <div modal-footer>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="submit" class="btn btn-primary">Incluir</button>
+      </div>
+    </modal>
+  </form>
+
 
 
 <!--<form (submit)="submit()">-->
