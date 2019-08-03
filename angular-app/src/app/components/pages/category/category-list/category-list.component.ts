@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 
+declare let $;
+
 @Component({
   selector: 'category-list',
   templateUrl: './category-list.component.html',
@@ -19,13 +21,7 @@ export class CategoryListComponent implements OnInit {
   }
 
   ngOnInit() {
-    const token = window.localStorage.getItem('token');
-    this.http.get<{ data: Array<any> }>('http://localhost:8000/api/categories', {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-      .subscribe(response => this.categories = response.data);
+    this.getCategories();
   }
 
   submit() {
@@ -36,6 +32,18 @@ export class CategoryListComponent implements OnInit {
       }
     })
       .subscribe((category) => console.log(category));
+    this.getCategories();
+    $('#modalExemplo').modal('hide');
+  }
+
+  getCategories() {
+    const token = window.localStorage.getItem('token');
+    this.http.get<{ data: Array<any> }>('http://localhost:8000/api/categories', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+      .subscribe(response => this.categories = response.data);
   }
 
 }
