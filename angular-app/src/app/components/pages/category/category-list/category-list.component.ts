@@ -14,10 +14,19 @@ import {CategoryServiceDelete} from "./category-service-delete";
   templateUrl: './category-list.component.html',
   styleUrls: ['../../login/login.component.css']
 })
+
+
+
 export class CategoryListComponent implements OnInit {
 
+
   categories: Array<CategoryInterface> = [];
-  page = 1;
+
+  paginacao = {
+    page:1,
+    totalItems: 0,
+    per_page: 3,
+  };
 
   @ViewChild(CategoryNewModalComponent) categoryNewModal: CategoryNewModalComponent;
   @ViewChild(CategoryEditModalComponent) categoryEditModal: CategoryEditModalComponent;
@@ -39,10 +48,18 @@ export class CategoryListComponent implements OnInit {
   }
 
   getCategories() {
-    this.categoryHttp.list()
+    this.categoryHttp.list(this.paginacao.page)
       .subscribe(response => {
-        this.categories = response.data
-      });
+        this.categories = response.data;
+        this.paginacao.totalItems = response.meta.total;
+        this.paginacao.per_page = response.meta.per_page;
+        this.paginacao.page = response.meta.current_page;
+        });
+  }
+
+  pageChanged(page){
+    this.paginacao.page = page;
+    this.getCategories();
   }
 
 

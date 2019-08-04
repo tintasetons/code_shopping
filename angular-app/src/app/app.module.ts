@@ -41,8 +41,9 @@ const routes: Routes = [
     // AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes),// , {enableTracing:true})
-    NgxPaginationModule
+    NgxPaginationModule,
+    RouterModule.forRoot(routes)// , {enableTracing:true})
+
 
   ],
   providers: [],
