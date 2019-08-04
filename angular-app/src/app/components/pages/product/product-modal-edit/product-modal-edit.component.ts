@@ -13,6 +13,8 @@ export class ProductModalEditComponent implements OnInit {
 
   product: ProductInterface = {
     name: '',
+    description: '',
+    price: 0,
     active: true
   };
 
