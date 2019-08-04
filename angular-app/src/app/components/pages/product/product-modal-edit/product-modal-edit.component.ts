@@ -1,29 +1,29 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {ModalComponent} from "../../../bootstrap/modal/modal.component";
 import {HttpErrorResponse} from "@angular/common/http";
-import {CategoryInterface} from "../../../../models";
-import {CategoryHttpService} from "../../../../services/http/category-http.service";
+import {ProductInterface} from "../../../../models";
+import {ProductHttpService} from "../../../../services/http/product-http.service";
 
 @Component({
-  selector: 'category-edit-modal',
-  templateUrl: './category-edit-modal.component.html',
-  styleUrls: ['./category-edit-modal.component.css']
+  selector: 'product-edit-modal',
+  templateUrl: './product-modal-edit.component.html',
+  styleUrls: ['./product-modal-edit.component.css']
 })
-export class CategoryEditModalComponent implements OnInit {
+export class ProductModalEditComponent implements OnInit {
 
-  category: CategoryInterface = {
+  product: ProductInterface = {
     name: '',
     active: true
   };
 
-  _categoryId: number;
+  _productId: number;
 
   @Output() onSuccess: EventEmitter<any> = new EventEmitter<any>();
   @Output() onError: EventEmitter<HttpErrorResponse> = new EventEmitter<HttpErrorResponse>();
 
   @ViewChild(ModalComponent) modal: ModalComponent;
 
-  constructor(public categoryHttp: CategoryHttpService) {
+  constructor(public productHttp: ProductHttpService) {
   }
 
   ngOnInit() {
@@ -31,32 +31,32 @@ export class CategoryEditModalComponent implements OnInit {
 
 
   @Input()
-  set categoryId(value) {
-    this._categoryId = value;
-    if (this._categoryId) {
-      this.categoryHttp.get(this._categoryId)
-        .subscribe(category => this.category = category)
+  set productId(value) {
+    this._productId = value;
+    if (this._productId) {
+      this.productHttp.get(this._productId)
+        .subscribe(product => this.product = product)
     }
   }
 
   submit() {
-    this.categoryHttp
-      .update(this._categoryId, this.category)
-      .subscribe((category) => {
-        this.onSuccess.emit(category);
+    this.productHttp
+      .update(this._productId, this.product)
+      .subscribe((product) => {
+        this.onSuccess.emit(product);
         this.modal.hide();
       }, error => this.onError.emit(error));
 
 
 
     // const token = window.localStorage.getItem('token');
-    // this.http.put(`http://localhost:8000/api/categories/${this._categoryId}`, this.category, {
+    // this.http.put(`http://localhost:8000/api/products/${this._productId}`, this.product, {
     //   headers: {
     //     'Authorization': `Bearer ${token}`
     //   }
     // })
-    //   .subscribe((category) => {
-    //     this.onSuccess.emit(category);
+    //   .subscribe((product) => {
+    //     this.onSuccess.emit(product);
     //     this.modal.hide();
     //   }, error => this.onError.emit(error));
 

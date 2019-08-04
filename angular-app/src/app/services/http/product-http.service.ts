@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs/internal/Observable";
-import {CategoryInterface} from "../../models"
+import {ProductInterface} from "../../models"
 import {map} from "rxjs/operators";
 
 @Injectable({
@@ -9,16 +9,16 @@ import {map} from "rxjs/operators";
 })
 
 
-export class CategoryHttpService {
+export class ProductHttpService {
 
-  private baseUrl = `http://localhost:8000/api/categories`;
+  private baseUrl = `http://localhost:8000/api/products`;
 
   constructor(private http: HttpClient) {
 
   }
 
   list(page: number): Observable<{
-    data: Array<CategoryInterface>, meta: any
+    data: Array<ProductInterface>, meta: any
     // meta: Array<PaginateInterface>
   }> {
     const token = window.localStorage.getItem('token');
@@ -29,7 +29,7 @@ export class CategoryHttpService {
     });
     return this.http
       .get<{
-        data: Array<CategoryInterface>, meta: any
+        data: Array<ProductInterface>, meta: any
         // meta: Array<PaginateInterface>
       }>
       (`${this.baseUrl}`, {
@@ -40,10 +40,10 @@ export class CategoryHttpService {
       });
   }
 
-  get(id: number): Observable<CategoryInterface> {
+  get(id: number): Observable<ProductInterface> {
     const token = window.localStorage.getItem('token');
     return this.http
-      .get<{ data: CategoryInterface }>
+      .get<{ data: ProductInterface }>
       (`${this.baseUrl}/${id}`, {
         headers: {
           'Authorization': `Bearer ${token}`
@@ -52,10 +52,10 @@ export class CategoryHttpService {
       .pipe(map(response => response.data));
   }
 
-  create(data: CategoryInterface) {
+  create(data: ProductInterface) {
     const token = window.localStorage.getItem('token');
     return this.http
-      .post<{ data: CategoryInterface }>
+      .post<{ data: ProductInterface }>
       (`${this.baseUrl}`, data, {
         headers: {
           'Authorization': `Bearer ${token}`
@@ -65,10 +65,10 @@ export class CategoryHttpService {
 
   }
 
-  update(id: number, data: CategoryInterface) {
+  update(id: number, data: ProductInterface) {
     const token = window.localStorage.getItem('token');
     return this.http
-      .put<{ data: CategoryInterface }>(`${this.baseUrl}/${id}`, data, {
+      .put<{ data: ProductInterface }>(`${this.baseUrl}/${id}`, data, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

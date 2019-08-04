@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="my-lg-4">
+    <h5>Listagem de produtos</h5>
+  </div>
+  <div class="my-4">
+    <button class="btn btn-sm btn-facebook  " type="submit" data-toggle="modal"
+            (click)="productServiceInsert.showModalInsert()"
+            data-target="#modalExemplo">Novo Produto
+    </button>
+  </div>
+  <div class="row my-4">
+    <table class="table table-striped">
+      <thead>
+
+      <tr>
+        <th style="width: 5%">#</th>
+        <th style="width: 55%">Nome</th>
+        <th style="width: 10%">Preço</th>
+        <th style="width: 5%">Status</th>
+        <th style="width: 10%">Criado em:</th>
+        <th style="width: 10%">Ações</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let product of products | paginate: {
+      itemsPerPage: paginacao.per_page ,
+      currentPage: paginacao.page,
+      totalItems: paginacao.totalItems
+       };">
+        <td>{{product.id}}</td>
+        <td>{{product.name}}</td>
+        <td>{{product.price}}</td>
+        <td style="text-align: center">
+          <i style="font-size: 1em; "
+             class="fas"
+             [ngStyle]="{'color': product.active === true ?  'green' :'red'}"
+             [ngClass]="{'fa-check': product.active, 'fa-times ': !product.active}">
+          </i></td>
+        <td>{{product.created_at.date| date: 'dd/MM/yyyy'}}</td>
+        <td>
+          <a href="javascript:void(0)"></a>
+          <a href="javascript:void(0)" (click)="productServiceEdit.showModalEdit(product.id)"><i
+            class="fas fa-edit"></i></a> |
+          <a href="javascript:void(0)" (click)="productServiceDelete.showModalDelete(product.id)"><i
+            class="fas fa-trash-alt"></i></a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+      <pagination-controls
+      (pageChange)="paginacao.page  = pageChanged($event)"
+      previousLabel="Anterior"
+      nextLabel="Próximo"
+    ></pagination-controls>
+  </div>
+</div>
+<product-new-modal
+  (onSuccess)="productServiceInsert.onInsertSuccess($event)"
+  (onError)="productServiceInsert.onInsertError($event)"
+></product-new-modal>
+<product-edit-modal
+  [productId]="productId"
+  (onSuccess)="productServiceEdit.onEditSuccess($event)"
+  (onError)="productServiceEdit.onEditError($event)"
+></product-edit-modal>
+
+<product-delete-modal
+  [productId]="productId"
+  (onSuccess)="productServiceDelete.onDeleteSuccess($event)"
+  (onError)="productServiceDelete.onDeleteError($event)"
+></product-delete-modal>
+

@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {CategoryNewModalComponent} from "../category-new-modal/category-new-modal.component";
-import {CategoryEditModalComponent} from "../category-edit-modal/category-edit-modal.component";
-import {CategoryDeleteModalComponent} from "../category-delete-modal/category-delete-modal.component";
+import {CategoryModalNewComponent} from "../category-modal-new/category-modal-new.component";
+import {CategoryModalEditComponent} from "../category-modal-edit/category-modal-edit.component";
+import {CategoryModalDeleteComponent} from "../category-modal-delete/category-modal-delete.component";
 import {CategoryHttpService} from "../../../../services/http/category-http.service";
 import {CategoryInterface} from "../../../../models";
 import {CategoryServiceInsert} from "./category-service-insert";
@@ -28,9 +28,9 @@ export class CategoryListComponent implements OnInit {
     per_page: 3,
   };
 
-  @ViewChild(CategoryNewModalComponent) categoryNewModal: CategoryNewModalComponent;
-  @ViewChild(CategoryEditModalComponent) categoryEditModal: CategoryEditModalComponent;
-  @ViewChild(CategoryDeleteModalComponent) categoryDeleteModal: CategoryDeleteModalComponent;
+  @ViewChild(CategoryModalNewComponent) categoryNewModal: CategoryModalNewComponent;
+  @ViewChild(CategoryModalEditComponent) categoryEditModal: CategoryModalEditComponent;
+  @ViewChild(CategoryModalDeleteComponent) categoryDeleteModal: CategoryModalDeleteComponent;
 
   categoryId: number;
 
