@@ -20,6 +20,7 @@ class CorsMiddleware
             header('Access-Control-Allow-Origin: http://localhost:4200');
             //            header('Access-Control-Allow-Origin: http://localhost:8000');
             header('Access-Control-Allow-Headers: X-Requested-With,Content-Type, Authorization ');
+            header('Access-Control-Allow-Methods: GET, POST, DELETE, PUT, PATCH, OPTIONS');
 
         }
         return $next($request);
