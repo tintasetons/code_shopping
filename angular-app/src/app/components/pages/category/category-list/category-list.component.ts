@@ -1,10 +1,14 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {HttpErrorResponse} from "@angular/common/http";
 import {CategoryNewModalComponent} from "../category-new-modal/category-new-modal.component";
 import {CategoryEditModalComponent} from "../category-edit-modal/category-edit-modal.component";
 import {CategoryDeleteModalComponent} from "../category-delete-modal/category-delete-modal.component";
 import {CategoryHttpService} from "../../../../services/http/category-http.service";
 import {CategoryInterface} from "../../../../models";
+import PNotify from "pnotify/dist/es/PNotify";
+import PNotifyButtons from "pnotify/dist/es/PNotifyButtons";
+
+
 
 @Component({
   selector: 'category-list',
@@ -26,7 +30,7 @@ export class CategoryListComponent implements OnInit {
 
   categoryId: number;
 
-  constructor(private http: HttpClient, public categoryHttp: CategoryHttpService) {
+  constructor(public categoryHttp: CategoryHttpService) {
 
   }
 
@@ -35,7 +39,7 @@ export class CategoryListComponent implements OnInit {
   }
 
   getCategories() {
-    this.categoryHttp.list()
+     this.categoryHttp.list()
       .subscribe(response => {
         this.categories = response.data
       });
@@ -80,4 +84,12 @@ export class CategoryListComponent implements OnInit {
   }
 
 
+  showNotify() {
+    PNotifyButtons;
+    PNotify.success({
+      title: 'Oh No!',
+      text: 'Something terrible happened.'
+    });
+
+  }
 }
