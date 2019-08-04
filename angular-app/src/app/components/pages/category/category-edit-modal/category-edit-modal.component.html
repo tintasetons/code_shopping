@@ -8,7 +8,13 @@
                [(ngModel)]="category.name" placeholder="Crie sua nova Categoria">
         <small id="emailHelp" class="form-text text-muted">Cadastro de categorias...</small>
       </div>
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="active" name="active" aria-describedby="emailHelp" required
+               [(ngModel)]="category.active">
+        <label for="active">Ativo?</label>
+      </div>
     </div>
+
     <div modal-footer>
       <button type="button" style="margin-right : 1rem" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
       <button type="submit" class="btn btn-primary" >Editar</button>
