@@ -23,6 +23,7 @@ import {ProductModalEditComponent} from './components/pages/product/product-moda
 import {ProductModalDeleteComponent} from './components/pages/product/product-modal-delete/product-modal-delete.component';
 
 import {NgxPaginationModule} from "ngx-pagination";
+import { NumberFormatBrPipe } from './pipes/number-format-br.pipe';
 
 
 const routes: Routes = [
@@ -49,6 +50,7 @@ const routes: Routes = [
     ProductModalNewComponent,
     ProductModalEditComponent,
     ProductModalDeleteComponent,
+    NumberFormatBrPipe,
   ],
   imports: [
     BrowserModule,
