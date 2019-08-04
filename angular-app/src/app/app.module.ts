@@ -6,9 +6,7 @@ import {AppComponent} from './app.component';
 import {LoginComponent} from './components/pages/login/login.component';
 import {FormsModule} from '@angular/forms';
 
-import {Route, RouterModule, Routes} from "@angular/router";
-
-// import {AppRoutingModule} from './app-routing.module';
+import { RouterModule, Routes} from "@angular/router";
 
 import {HttpClientModule} from '@angular/common/http';
 import {CategoryListComponent} from './components/pages/category/category-list/category-list.component';

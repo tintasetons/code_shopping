@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {ModalComponent} from "../../../bootstrap/modal/modal.component";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {CategoryHttpService} from "../../../../services/http/category-http.service";
 
 @Component({
   selector: 'category-new-modal',
@@ -20,7 +21,7 @@ export class CategoryNewModalComponent implements OnInit {
   @Output() onError: EventEmitter<HttpErrorResponse> = new EventEmitter<HttpErrorResponse>();
 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, public categoryHttp: CategoryHttpService) {
 
 
   }
