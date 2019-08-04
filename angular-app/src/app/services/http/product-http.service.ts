@@ -3,13 +3,14 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs/internal/Observable";
 import {ProductInterface} from "../../models"
 import {map} from "rxjs/operators";
+import {HttpResource} from "./http-resource";
 
 @Injectable({
   providedIn: 'root'
 })
 
 
-export class ProductHttpService {
+export class ProductHttpService implements HttpResource<ProductInterface>{
 
   private baseUrl = `http://localhost:8000/api/products`;
 
@@ -88,6 +89,4 @@ export class ProductHttpService {
         }
       })
   }
-
-
 }

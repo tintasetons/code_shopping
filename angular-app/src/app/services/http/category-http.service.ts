@@ -3,13 +3,14 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs/internal/Observable";
 import {CategoryInterface} from "../../models"
 import {map} from "rxjs/operators";
+import {HttpResource} from "./http-resource";
 
 @Injectable({
   providedIn: 'root'
 })
 
 
-export class CategoryHttpService {
+export class CategoryHttpService implements HttpResource<CategoryInterface>{
 
   private baseUrl = `http://localhost:8000/api/categories`;
 
