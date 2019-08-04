@@ -14,8 +14,8 @@
       <tr>
         <th style="width: 5%">#</th>
         <th style="width: 60%">Nome</th>
-        <th style="width: 5%">Ativa</th>
-        <th style="width: 25%">Criado em</th>
+        <th style="width: 5%">Status</th>
+        <th style="width: 25%">Criado em:</th>
         <th style="width: 10%">Ações</th>
       </tr>
       </thead>
@@ -32,9 +32,8 @@
         <td>{{category.created_at.date| date: 'dd/MM/yyyy'}}</td>
         <td>
           <a href="javascript:void(0)"></a>
-            <a href="javascript:void(0)" (click)="showModalEdit(category.id)"><i style="color: darkorange" class="fas fa-edit" ></i></a> |
-            <a href="javascript:void(0)"><i style="color: red" class="fas fa-trash" ></i></a>
-
+          <a href="javascript:void(0)" (click)="showModalEdit(category.id)"><i class="fas fa-edit"></i></a> |
+          <a href="javascript:void(0)" (click)="showModalDelete(category.id)"><i class="fas fa-trash-alt"></i></a>
 
 
         </td>
@@ -47,8 +46,15 @@
   (onSuccess)="onInsertSuccess($event)"
   (onError)="onInsertError($event)"
 ></category-new-modal>
-<category-edit-modal [categoryId]="categoryId"
-                     (onSuccess)="onEditSuccess($event)"
-                     (onError)="onEditError($event)"
+<category-edit-modal
+  [categoryId]="categoryId"
+  (onSuccess)="onEditSuccess($event)"
+  (onError)="onEditError($event)"
 ></category-edit-modal>
+
+<category-delete-modal
+  [categoryId]="categoryId"
+  (onSuccess)="onDeleteSuccess($event)"
+  (onError)="onDeleteError($event)"
+></category-delete-modal>
 
