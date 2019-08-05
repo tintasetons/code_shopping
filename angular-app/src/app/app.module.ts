@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
+import {JwtModule, JWT_OPTIONS} from '@auth0/angular-jwt'
 
 import {AppComponent} from './app.component';
 import {LoginComponent} from './components/pages/login/login.component';
@@ -31,6 +31,7 @@ import {NgxPaginationModule} from "ngx-pagination";
 import { NumberFormatBrPipe } from './pipes/number-format-br.pipe';
 import { ProductCategoryListComponent } from './components/pages/product-category/product-category-list/product-category-list.component';
 import { ProductCategoryNewComponent } from './components/pages/product-category/product-category-new/product-category-new.component';
+import {AuthService} from "./services/auth.service";
 
 
 
@@ -43,6 +44,17 @@ const routes: Routes = [
   {path: 'products/list', component: ProductListComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full'}
 ];
+
+function jwtFactory(authService: AuthService) {
+    return{
+      whitelistedDomains:[
+       new RegExp(`localhost:8000/*`)
+      ],
+      tokenGetter: () => {
+        return authService.getToken();
+      }
+    }
+}
 
 
 @NgModule({
@@ -77,7 +89,14 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule,
     NgxPaginationModule,
-    RouterModule.forRoot(routes)// , {enableTracing:true})
+    RouterModule.forRoot(routes),// , {enableTracing:true})
+    JwtModule.forRoot({
+      jwtOptionsProvider:{
+        provide: JWT_OPTIONS,
+        useFactory: jwtFactory,
+        deps: [AuthService]
+      }
+    })
 
 
   ],

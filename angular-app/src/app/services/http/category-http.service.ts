@@ -12,7 +12,7 @@ import {AuthService} from "../auth.service";
 })
 
 
-export class CategoryHttpService implements HttpResource<CategoryInterface>{
+export class CategoryHttpService implements HttpResource<CategoryInterface> {
 
   private baseUrl = `http://localhost:8000/api/categories`;
 
@@ -23,32 +23,22 @@ export class CategoryHttpService implements HttpResource<CategoryInterface>{
   list(searchParams: SearchParams): Observable<{
     data: Array<CategoryInterface>, meta: any
   }> {
-    const token = this.authService.getToken();
     const sParams = new SearchParamsBuild(searchParams).makeObject();
     const params = new HttpParams({
-      fromObject:(<any>sParams)
+      fromObject: (<any>sParams)
     });
     return this.http
       .get<{
         data: Array<CategoryInterface>, meta: any
       }>
-      (`${this.baseUrl}`, {
-        params,
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      (`${this.baseUrl}`, {params});
   }
 
   get(id: number): Observable<CategoryInterface> {
     const token = this.authService.getToken();
     return this.http
       .get<{ data: CategoryInterface }>
-      (`${this.baseUrl}/${id}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      })
+      (`${this.baseUrl}/${id}`, {})
       .pipe(map(response => response.data));
   }
 
@@ -56,11 +46,7 @@ export class CategoryHttpService implements HttpResource<CategoryInterface>{
     const token = this.authService.getToken();
     return this.http
       .post<{ data: CategoryInterface }>
-      (`${this.baseUrl}`, data, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      })
+      (`${this.baseUrl}`, data, {})
       .pipe(map(response => response.data));
 
   }
@@ -68,11 +54,7 @@ export class CategoryHttpService implements HttpResource<CategoryInterface>{
   update(id: number, data: CategoryInterface) {
     const token = this.authService.getToken();
     return this.http
-      .put<{ data: CategoryInterface }>(`${this.baseUrl}/${id}`, data, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      })
+      .put<{ data: CategoryInterface }>(`${this.baseUrl}/${id}`, data, {})
       .pipe(
         map(data => data)
       );
@@ -82,11 +64,7 @@ export class CategoryHttpService implements HttpResource<CategoryInterface>{
     const token = this.authService.getToken();
     return this.http
       .delete
-      (`${this.baseUrl}/${id}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      })
+      (`${this.baseUrl}/${id}`, {})
   }
 
 
