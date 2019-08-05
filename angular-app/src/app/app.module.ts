@@ -25,6 +25,7 @@ import {ProductModalDeleteComponent} from './components/pages/product/product-mo
 import {NgxPaginationModule} from "ngx-pagination";
 import { NumberFormatBrPipe } from './pipes/number-format-br.pipe';
 import { ProductCategoryListComponent } from './components/pages/product-category/product-category-list/product-category-list.component';
+import { ProductCategoryNewComponent } from './components/pages/product-category/product-category-new/product-category-new.component';
 
 
 const routes: Routes = [
@@ -54,6 +55,7 @@ const routes: Routes = [
     ProductModalDeleteComponent,
     NumberFormatBrPipe,
     ProductCategoryListComponent,
+    ProductCategoryNewComponent,
   ],
   imports: [
     BrowserModule,
