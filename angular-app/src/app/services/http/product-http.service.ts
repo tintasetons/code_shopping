@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs/internal/Observable";
-import {ProductInterface} from "../../models"
+import {CategoryInterface, ProductInterface} from "../../models"
 import {map} from "rxjs/operators";
-import {HttpResource} from "./http-resource";
+import {HttpResource, SearchParams, SearchParamsBuild} from "./http-resource";
 
 @Injectable({
   providedIn: 'root'
@@ -16,15 +16,16 @@ export class ProductHttpService implements HttpResource<ProductInterface>{
   constructor(private http: HttpClient) {
   }
 
-  list(page: number): Observable<{
+
+
+  list(searchParams: SearchParams): Observable<{
     data: Array<ProductInterface>, meta: any
     // meta: Array<PaginateInterface>
   }> {
     const token = window.localStorage.getItem('token');
+    const sParams = new SearchParamsBuild(searchParams).makeObject();
     const params = new HttpParams({
-      fromObject: {
-        page: page + ""
-      }
+      fromObject: (<any>sParams)
     });
     return this.http
       .get<{

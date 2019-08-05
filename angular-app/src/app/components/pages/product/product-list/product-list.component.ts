@@ -48,7 +48,7 @@ export class ProductListComponent implements OnInit {
   }
 
   getProducts() {
-    this.productHttp.list(this.paginacao.page)
+    this.productHttp.list({page: this.paginacao.page})
       .subscribe(response => {
         this.products = response.data;
         this.paginacao.totalItems = response.meta.total;

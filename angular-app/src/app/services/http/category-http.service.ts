@@ -3,7 +3,8 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs/internal/Observable";
 import {CategoryInterface} from "../../models"
 import {map} from "rxjs/operators";
-import {HttpResource} from "./http-resource";
+import {HttpResource, SearchParams, SearchParamsBuild} from "./http-resource";
+
 
 @Injectable({
   providedIn: 'root'
@@ -18,14 +19,13 @@ export class CategoryHttpService implements HttpResource<CategoryInterface>{
 
   }
 
-  list(page: number): Observable<{
+  list(searchParams: SearchParams): Observable<{
     data: Array<CategoryInterface>, meta: any
   }> {
     const token = window.localStorage.getItem('token');
+    const sParams = new SearchParamsBuild(searchParams).makeObject();
     const params = new HttpParams({
-      fromObject: {
-        page: page + ""
-      }
+      fromObject:(<any>sParams)
     });
     return this.http
       .get<{
