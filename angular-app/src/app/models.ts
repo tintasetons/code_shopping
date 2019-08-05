@@ -10,7 +10,6 @@ export interface CategoryInterface {
 export interface ProductInterface {
   id?: number,
   name: string,
-
   description: string,
   price: number,
   readonly slug?: string,

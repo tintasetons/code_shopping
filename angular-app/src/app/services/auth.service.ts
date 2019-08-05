@@ -5,7 +5,6 @@ import {tap} from "rxjs/operators";
 import {UserInterface} from "../models";
 import {JwtHelperService} from "@auth0/angular-jwt";
 
-
 const TOKEN_KEY = 'code_shopping_token';
 
 @Injectable({
@@ -34,10 +33,6 @@ export class AuthService {
     window.localStorage.setItem(TOKEN_KEY, token);
   }
 
-  getToken(): string | null {
-    return window.localStorage.getItem(TOKEN_KEY);
-  }
-
   private setUserFromToken(token: string) {
     const decodedPayload = new JwtHelperService().decodeToken(token);
     this.me = decodedPayload ? {
@@ -45,5 +40,9 @@ export class AuthService {
       name: decodedPayload.name,
       email: decodedPayload.email,
     } : null;
+  }
+
+  getToken(): string | null {
+    return window.localStorage.getItem(TOKEN_KEY);
   }
 }
