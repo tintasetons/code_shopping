@@ -4,6 +4,7 @@ import {Observable} from "rxjs/internal/Observable";
 import {CategoryInterface} from "../../models"
 import {map} from "rxjs/operators";
 import {HttpResource, SearchParams, SearchParamsBuild} from "./http-resource";
+import {AuthService} from "../auth.service";
 
 
 @Injectable({
@@ -15,14 +16,14 @@ export class CategoryHttpService implements HttpResource<CategoryInterface>{
 
   private baseUrl = `http://localhost:8000/api/categories`;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private authService: AuthService) {
 
   }
 
   list(searchParams: SearchParams): Observable<{
     data: Array<CategoryInterface>, meta: any
   }> {
-    const token = window.localStorage.getItem('token');
+    const token = this.authService.getToken();
     const sParams = new SearchParamsBuild(searchParams).makeObject();
     const params = new HttpParams({
       fromObject:(<any>sParams)
@@ -40,7 +41,7 @@ export class CategoryHttpService implements HttpResource<CategoryInterface>{
   }
 
   get(id: number): Observable<CategoryInterface> {
-    const token = window.localStorage.getItem('token');
+    const token = this.authService.getToken();
     return this.http
       .get<{ data: CategoryInterface }>
       (`${this.baseUrl}/${id}`, {
@@ -52,7 +53,7 @@ export class CategoryHttpService implements HttpResource<CategoryInterface>{
   }
 
   create(data: CategoryInterface) {
-    const token = window.localStorage.getItem('token');
+    const token = this.authService.getToken();
     return this.http
       .post<{ data: CategoryInterface }>
       (`${this.baseUrl}`, data, {
@@ -65,7 +66,7 @@ export class CategoryHttpService implements HttpResource<CategoryInterface>{
   }
 
   update(id: number, data: CategoryInterface) {
-    const token = window.localStorage.getItem('token');
+    const token = this.authService.getToken();
     return this.http
       .put<{ data: CategoryInterface }>(`${this.baseUrl}/${id}`, data, {
         headers: {
@@ -78,7 +79,7 @@ export class CategoryHttpService implements HttpResource<CategoryInterface>{
   }
 
   destroy(id: number): Observable<any> {
-    const token = window.localStorage.getItem('token');
+    const token = this.authService.getToken();
     return this.http
       .delete
       (`${this.baseUrl}/${id}`, {
