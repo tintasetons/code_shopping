@@ -6,7 +6,6 @@ import {ProductCategoryHttpService} from "../../../../services/http/product-cate
 import {CategoryHttpService} from "../../../../services/http/category-http.service";
 
 
-
 @Component({
   selector: 'app-product-category-list',
   templateUrl: './product-category-list.component.html',
@@ -18,7 +17,7 @@ export class ProductCategoryListComponent implements OnInit {
   product: ProductInterface = null;
   productCategory: ProductCategoryInterface = null;
   categories: CategoryInterface[] = [];
-  categoriesId:[number];
+  categoriesId: [number];
 
   constructor(private route: ActivatedRoute,
               private productHttp: ProductHttpService,
@@ -28,19 +27,19 @@ export class ProductCategoryListComponent implements OnInit {
   }
 
   ngOnInit() {
-     this.getCategories();
+    this.getCategories();
     this.route.params.subscribe(params => {
-        this.productId = params.product;
-        this.getProduct();
-        this.getproductCategory();
+      this.productId = params.product;
+      this.getProduct();
+      this.getproductCategory();
     });
   }
 
-  change(){
-        console.log(this.categoriesId);
+  change() {
+    console.log(this.categoriesId);
   }
 
-  getProduct(){
+  getProduct() {
     this.productHttp
       .get(this.productId)
       .subscribe(product => this.product = product);
@@ -53,12 +52,29 @@ export class ProductCategoryListComponent implements OnInit {
         this.categories = response.data;
       });
   }
-  getproductCategory(){
+
+  getproductCategory() {
     this.productCategoryHttp
       .list(this.productId)
-      .subscribe( productCategory => {
+      .subscribe(productCategory => {
         this.productCategory = productCategory;
         console.log(this.productCategory);
-        })
+      })
+  }
+
+  submit() {
+    const categoriesId = this.mergeCategories();
+    this.productCategoryHttp
+      .create(this.productId, categoriesId)
+      .subscribe( productCategory => this.getproductCategory());
+    return false;
+  }
+
+  private mergeCategories(): number[] {
+    const categoriesId = this.productCategory.categories.map((category) => category.id);
+    const newCategoriesId = this.categoriesId.filter((category) => {
+      return categoriesId.indexOf(category) == -1;
+    });
+    return categoriesId.concat(newCategoriesId);
   }
 }

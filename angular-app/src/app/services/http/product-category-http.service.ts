@@ -26,6 +26,20 @@ export class ProductCategoryHttpService {
         map(response => response.data)
       );
   }
+
+  create(productId: number, categoriesId: number[]): Observable<ProductCategoryInterface>{
+    const token = window.localStorage.getItem('token');
+    return this.http
+      .post<{ data: ProductCategoryInterface }>
+      (`http://localhost:8000/api/products/${productId}/categories`, { categories: categoriesId },{
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      .pipe(
+        map(response => response.data)
+      );
+  }
 }
 
 
