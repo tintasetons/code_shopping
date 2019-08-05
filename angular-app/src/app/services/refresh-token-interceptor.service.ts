@@ -5,7 +5,7 @@ import {
   HttpHandler,
   HttpInterceptor,
   HttpRequest,
-  HttpResponse
+  HttpResponseBase
 } from "@angular/common/http";
 import {tap} from "rxjs/operators";
 import {Observable} from "rxjs";
@@ -28,6 +28,7 @@ export class RefreshTokenInterceptorService implements HttpInterceptor {
           console.log(event);
           this.setNewTokenIsResponseValid(event);
         }, (eventError: HttpEvent<any>) => {
+          this.setNewTokenIsResponseValid(eventError);
           this.redirectTologinIfAnauthenticated(eventError);
         })
       )
@@ -42,7 +43,7 @@ export class RefreshTokenInterceptorService implements HttpInterceptor {
   }
 
   private setNewTokenIsResponseValid(event: HttpEvent<any>) {
-    if (event instanceof HttpResponse) {
+    if (event instanceof HttpResponseBase) {
       const authorizationHeader = event.headers.get('authorization');
       if (authorizationHeader) {
         const token = authorizationHeader.split(' ')[1];
