@@ -8,7 +8,7 @@ import {FormsModule} from '@angular/forms';
 
 import {RouterModule, Routes} from "@angular/router";
 
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AlertErrorComponent} from './components/bootstrap/alert-error/alert-error.component';
 import {ModalComponent} from './components/bootstrap/modal/modal.component';
 
@@ -28,34 +28,33 @@ import {UserModalEditComponent} from './components/pages/user/user-modal-edit/us
 import {UserModalDeleteComponent} from './components/pages/user/user-modal-delete/user-modal-delete.component';
 
 import {NgxPaginationModule} from "ngx-pagination";
-import { NumberFormatBrPipe } from './pipes/number-format-br.pipe';
-import { ProductCategoryListComponent } from './components/pages/product-category/product-category-list/product-category-list.component';
-import { ProductCategoryNewComponent } from './components/pages/product-category/product-category-new/product-category-new.component';
+import {NumberFormatBrPipe} from './pipes/number-format-br.pipe';
+import {ProductCategoryListComponent} from './components/pages/product-category/product-category-list/product-category-list.component';
+import {ProductCategoryNewComponent} from './components/pages/product-category/product-category-new/product-category-new.component';
 import {AuthService} from "./services/auth.service";
-import { NavbarComponent } from './components/bootstrap/navbar/navbar.component';
+import {NavbarComponent} from './components/bootstrap/navbar/navbar.component';
 import {AuthGuard} from "./guards/auth.guard";
-
-
+import {RefreshTokenInterceptorService} from "./services/refresh-token-interceptor.service";
 
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
-  {path: 'categories/list', component: CategoryListComponent , canActivate: [AuthGuard]},
-  {path: 'users/list', component: UserListComponent , canActivate: [AuthGuard]},
-  {path: 'products/:product/categories/list', component: ProductCategoryListComponent , canActivate: [AuthGuard]},
-  {path: 'products/list', component: ProductListComponent , canActivate: [AuthGuard]},
+  {path: 'categories/list', component: CategoryListComponent, canActivate: [AuthGuard]},
+  {path: 'users/list', component: UserListComponent, canActivate: [AuthGuard]},
+  {path: 'products/:product/categories/list', component: ProductCategoryListComponent, canActivate: [AuthGuard]},
+  {path: 'products/list', component: ProductListComponent, canActivate: [AuthGuard]},
   {path: '', redirectTo: '/login', pathMatch: 'full'}
 ];
 
 function jwtFactory(authService: AuthService) {
-    return{
-      whitelistedDomains:[
-       new RegExp(`localhost:8000/*`)
-      ],
-      tokenGetter: () => {
-        return authService.getToken();
-      }
+  return {
+    whitelistedDomains: [
+      new RegExp(`localhost:8000/*`)
+    ],
+    tokenGetter: () => {
+      return authService.getToken();
     }
+  }
 }
 
 
@@ -94,7 +93,7 @@ function jwtFactory(authService: AuthService) {
     NgxPaginationModule,
     RouterModule.forRoot(routes),// , {enableTracing:true})
     JwtModule.forRoot({
-      jwtOptionsProvider:{
+      jwtOptionsProvider: {
         provide: JWT_OPTIONS,
         useFactory: jwtFactory,
         deps: [AuthService]
@@ -103,7 +102,13 @@ function jwtFactory(authService: AuthService) {
 
 
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RefreshTokenInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
