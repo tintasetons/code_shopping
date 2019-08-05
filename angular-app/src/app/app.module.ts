@@ -24,11 +24,13 @@ import {ProductModalDeleteComponent} from './components/pages/product/product-mo
 
 import {NgxPaginationModule} from "ngx-pagination";
 import { NumberFormatBrPipe } from './pipes/number-format-br.pipe';
+import { ProductCategoryListComponent } from './components/pages/product-category/product-category-list/product-category-list.component';
 
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'categories/list', component: CategoryListComponent},
+  {path: 'products/:product/categories/list', component: ProductCategoryListComponent},
   {path: 'products/list', component: ProductListComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full'}
 ];
@@ -51,6 +53,7 @@ const routes: Routes = [
     ProductModalEditComponent,
     ProductModalDeleteComponent,
     NumberFormatBrPipe,
+    ProductCategoryListComponent,
   ],
   imports: [
     BrowserModule,

@@ -9,13 +9,11 @@ import {HttpResource} from "./http-resource";
   providedIn: 'root'
 })
 
-
 export class ProductHttpService implements HttpResource<ProductInterface>{
 
   private baseUrl = `http://localhost:8000/api/products`;
 
   constructor(private http: HttpClient) {
-
   }
 
   list(page: number): Observable<{

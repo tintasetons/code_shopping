@@ -14,11 +14,11 @@
 
       <tr>
         <th style="width: 5%">#</th>
-        <th style="width: 55%">Nome</th>
+        <th style="width: 45%">Nome</th>
         <th style="width: 10%">Preço</th>
         <th style="width: 5%">Status</th>
         <th style="width: 10%">Criado em:</th>
-        <th style="width: 10%">Ações</th>
+        <th style="width: 20%">Ações</th>
       </tr>
       </thead>
       <tbody>
@@ -38,16 +38,18 @@
           </i></td>
         <td>{{product.created_at.date| date: 'dd/MM/yyyy'}}</td>
         <td>
-          <a href="javascript:void(0)"></a>
+          <!--<a href="javascript:void(0)"></a>-->
           <a href="javascript:void(0)" (click)="productServiceEdit.showModalEdit(product.id)"><i
             class="fas fa-edit"></i></a> |
           <a href="javascript:void(0)" (click)="productServiceDelete.showModalDelete(product.id)"><i
-            class="fas fa-trash-alt"></i></a>
+            class="fas fa-trash-alt"></i></a> |
+          <a [routerLink]="['/products',product.id, 'categories', 'list']">
+            <i class="fas fa-boxes"></i></a>
         </td>
       </tr>
       </tbody>
     </table>
-      <pagination-controls
+    <pagination-controls
       (pageChange)="paginacao.page  = pageChanged($event)"
       previousLabel="Anterior"
       nextLabel="Próximo"
