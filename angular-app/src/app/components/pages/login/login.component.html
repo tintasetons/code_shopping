@@ -9,9 +9,10 @@
           <h5 class="card-title text-center">CodeShopping</h5>
 
           <form class="form-signin" (submit)="submit()">
-            <div><label for="email">E-mail</label></div>
+            <div><label for="email">Usuário</label></div>
             <div class="form-label-group">
-              <div><input
+              <div>
+                <input
                 name="email"
                 [(ngModel)]="credentials.email"
                 type="email"
@@ -20,6 +21,7 @@
                 placeholder="Email address"
                 required
                 autofocus></div>
+              <small>Utilize seu usuário ou e-mail cadastrado!.</small>
             </div>
 
             <div><label for="inputPassword">Senha</label></div>
