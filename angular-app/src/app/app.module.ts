@@ -22,15 +22,23 @@ import {ProductModalNewComponent} from './components/pages/product/product-modal
 import {ProductModalEditComponent} from './components/pages/product/product-modal-edit/product-modal-edit.component';
 import {ProductModalDeleteComponent} from './components/pages/product/product-modal-delete/product-modal-delete.component';
 
+import {UserListComponent} from './components/pages/user/user-list/user-list.component';
+import {UserModalNewComponent} from './components/pages/user/user-modal-new/user-modal-new.component';
+import {UserModalEditComponent} from './components/pages/user/user-modal-edit/user-modal-edit.component';
+import {UserModalDeleteComponent} from './components/pages/user/user-modal-delete/user-modal-delete.component';
+
 import {NgxPaginationModule} from "ngx-pagination";
 import { NumberFormatBrPipe } from './pipes/number-format-br.pipe';
 import { ProductCategoryListComponent } from './components/pages/product-category/product-category-list/product-category-list.component';
 import { ProductCategoryNewComponent } from './components/pages/product-category/product-category-new/product-category-new.component';
 
 
+
+
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'categories/list', component: CategoryListComponent},
+  {path: 'users/list', component: UserListComponent},
   {path: 'products/:product/categories/list', component: ProductCategoryListComponent},
   {path: 'products/list', component: ProductListComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full'}
@@ -53,6 +61,12 @@ const routes: Routes = [
     ProductModalNewComponent,
     ProductModalEditComponent,
     ProductModalDeleteComponent,
+
+    UserListComponent,
+    UserModalNewComponent,
+    UserModalEditComponent,
+    UserModalDeleteComponent,
+
     NumberFormatBrPipe,
     ProductCategoryListComponent,
     ProductCategoryNewComponent,

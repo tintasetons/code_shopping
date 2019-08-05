@@ -24,7 +24,7 @@ export interface ProductCategoryInterface {
   categories: CategoryInterface[]
 }
 
-export interface User {
+export interface UserInterface {
   id?: number,
   name: string,
   email: string,
