@@ -2,6 +2,9 @@ import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {tap} from "rxjs/operators";
+import {UserInterface} from "../models";
+import {JwtHelperService} from "@auth0/angular-jwt";
+
 
 const TOKEN_KEY = 'code_shopping_token';
 
@@ -10,7 +13,11 @@ const TOKEN_KEY = 'code_shopping_token';
 })
 export class AuthService {
 
+  me: UserInterface = null;
+
   constructor(private http: HttpClient) {
+    const token = this.getToken();
+    this.setUserFromToken(token);
   }
 
   login(user: { email: string, password: string }): Observable<{ token: string }> {
@@ -22,11 +29,21 @@ export class AuthService {
       );
   }
 
-  setToken(token: string){
+  setToken(token: string) {
+    this.setUserFromToken(token);
     window.localStorage.setItem(TOKEN_KEY, token);
   }
 
   getToken(): string | null {
     return window.localStorage.getItem(TOKEN_KEY);
+  }
+
+  private setUserFromToken(token: string) {
+    const decodedPayload = new JwtHelperService().decodeToken(token);
+    this.me = decodedPayload ? {
+      id: decodedPayload.sub,
+      name: decodedPayload.name,
+      email: decodedPayload.email,
+    } : null;
   }
 }
