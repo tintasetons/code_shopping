@@ -20,7 +20,6 @@ export class CategoryHttpService implements HttpResource<CategoryInterface>{
 
   list(page: number): Observable<{
     data: Array<CategoryInterface>, meta: any
-    // meta: Array<PaginateInterface>
   }> {
     const token = window.localStorage.getItem('token');
     const params = new HttpParams({
@@ -31,7 +30,6 @@ export class CategoryHttpService implements HttpResource<CategoryInterface>{
     return this.http
       .get<{
         data: Array<CategoryInterface>, meta: any
-        // meta: Array<PaginateInterface>
       }>
       (`${this.baseUrl}`, {
         params,
