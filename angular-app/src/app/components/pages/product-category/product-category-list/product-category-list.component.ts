@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {ProductHttpService} from "../../../../services/http/product-http.service";
-import {ProductCategoryInterface, ProductInterface} from "../../../../models";
+import {CategoryInterface, ProductCategoryInterface, ProductInterface} from "../../../../models";
 import {ProductCategoryHttpService} from "../../../../services/http/product-category-http.service";
+import {CategoryHttpService} from "../../../../services/http/category-http.service";
 
 
 
@@ -16,19 +17,27 @@ export class ProductCategoryListComponent implements OnInit {
   productId: number;
   product: ProductInterface = null;
   productCategory: ProductCategoryInterface = null;
+  categories: CategoryInterface[] = [];
+  categoriesId:[number];
 
   constructor(private route: ActivatedRoute,
               private productHttp: ProductHttpService,
-              private productCategoryHttp: ProductCategoryHttpService
+              private productCategoryHttp: ProductCategoryHttpService,
+              private categoryHttp: CategoryHttpService
   ) {
   }
 
   ngOnInit() {
+     this.getCategories();
     this.route.params.subscribe(params => {
         this.productId = params.product;
         this.getProduct();
         this.getproductCategory();
     });
+  }
+
+  change(){
+        console.log(this.categoriesId);
   }
 
   getProduct(){
@@ -38,6 +47,12 @@ export class ProductCategoryListComponent implements OnInit {
 
   }
 
+  getCategories() {
+    this.categoryHttp.list(1)
+      .subscribe(response => {
+        this.categories = response.data;
+      });
+  }
   getproductCategory(){
     this.productCategoryHttp
       .list(this.productId)
