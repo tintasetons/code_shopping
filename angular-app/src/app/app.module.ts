@@ -36,6 +36,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import {environment} from "../environments/environment";
 import { SortColumnComponent } from './components/common/sort-column/sort-column.component';
 import { CategorySearchFormComponent } from './components/pages/category/category-search-form/category-search-form.component';
+import { CategoryFormComponent } from './components/pages/category/category-form/category-form.component';
 
 
 function jwtFactory(authService: AuthService) {
@@ -76,6 +77,7 @@ function jwtFactory(authService: AuthService) {
     UserModalDeleteComponent,
     SortColumnComponent,
     CategorySearchFormComponent,
+    CategoryFormComponent,
 
 
   ],
