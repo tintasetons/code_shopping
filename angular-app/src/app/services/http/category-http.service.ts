@@ -5,16 +5,13 @@ import {CategoryInterface} from "../../models"
 import {map} from "rxjs/operators";
 import {HttpResource, SearchParams, SearchParamsBuild} from "./http-resource";
 import {AuthService} from "../auth.service";
+import {environment} from "../../../environments/environment";
 
-
-@Injectable({
-  providedIn: 'root'
-})
-
+@Injectable({providedIn: 'root'})
 
 export class CategoryHttpService implements HttpResource<CategoryInterface> {
 
-  private baseUrl = `http://localhost:8000/api/categories`;
+  private baseUrl = `${environment.api.url}/api/categories`;
 
   constructor(private http: HttpClient, private authService: AuthService) {
 
@@ -48,7 +45,6 @@ export class CategoryHttpService implements HttpResource<CategoryInterface> {
       .post<{ data: CategoryInterface }>
       (`${this.baseUrl}`, data, {})
       .pipe(map(response => response.data));
-
   }
 
   update(id: number, data: CategoryInterface) {

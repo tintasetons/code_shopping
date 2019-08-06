@@ -46,20 +46,6 @@ export class UserModalEditComponent implements OnInit {
         this.onSuccess.emit(user);
         this.modal.hide();
       }, error => this.onError.emit(error));
-
-
-
-    // const token = window.localStorage.getItem('token');
-    // this.http.put(`http://localhost:8000/api/users/${this._userId}`, this.user, {
-    //   headers: {
-    //     'Authorization': `Bearer ${token}`
-    //   }
-    // })
-    //   .subscribe((user) => {
-    //     this.onSuccess.emit(user);
-    //     this.modal.hide();
-    //   }, error => this.onError.emit(error));
-
   }
 
 

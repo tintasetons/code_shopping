@@ -48,20 +48,6 @@ export class ProductModalEditComponent implements OnInit {
         this.onSuccess.emit(product);
         this.modal.hide();
       }, error => this.onError.emit(error));
-
-
-
-    // const token = window.localStorage.getItem('token');
-    // this.http.put(`http://localhost:8000/api/products/${this._productId}`, this.product, {
-    //   headers: {
-    //     'Authorization': `Bearer ${token}`
-    //   }
-    // })
-    //   .subscribe((product) => {
-    //     this.onSuccess.emit(product);
-    //     this.modal.hide();
-    //   }, error => this.onError.emit(error));
-
   }
 
 

@@ -3,6 +3,7 @@ import {ModalComponent} from "../../../bootstrap/modal/modal.component";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {CategoryInterface} from "../../../../models";
 import {CategoryHttpService} from "../../../../services/http/category-http.service";
+import {environment} from "../../../../../environments/environment";
 
 @Component({
   selector: 'category-delete-modal',
@@ -37,11 +38,9 @@ export class CategoryModalDeleteComponent implements OnInit {
   }
 
   destroy(){
-    const token = window.localStorage.getItem('token');
-    this.http.delete(`http://localhost:8000/api/categories/${this._categoryId}`,{
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
+
+    this.http.delete(`${environment.api.url}/api/categories/${this._categoryId}`,{
+
     })
       .subscribe((category) => {
         this.onSuccess.emit(category);

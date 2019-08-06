@@ -4,12 +4,20 @@ import {HttpClient} from "@angular/common/http";
 import {tap} from "rxjs/operators";
 import {UserInterface} from "../models";
 import {JwtHelperService} from "@auth0/angular-jwt";
+import {environment} from "../../environments/environment";
+
+// console.log(environment.production);
+// console.log(environment.api);
+// console.log(environment.api.url);
+
 
 const TOKEN_KEY = 'code_shopping_token';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable(
+  {
+    providedIn: 'root'
+  }
+)
 export class AuthService {
 
   me: UserInterface = null;
@@ -20,7 +28,7 @@ export class AuthService {
   }
 
   login(user: { email: string, password: string }): Observable<{ token: string }> {
-    return this.http.post<{ token: string }>('http://localhost:8000/api/login', user)
+    return this.http.post<{ token: string }>(`${environment.api.url}/api/login`, user)
       .pipe(
         tap(response => {
           this.setToken(response.token)
@@ -52,7 +60,7 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
-    return this.http.post<{ token: string }>('http://localhost:8000/api/logout', {})
+    return this.http.post<{ token: string }>(`${environment.api.url}/api/logout`, {})
       .pipe(
         tap(() => {
           this.setToken(null)

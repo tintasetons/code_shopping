@@ -3,6 +3,7 @@ import {ModalComponent} from "../../../bootstrap/modal/modal.component";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {ProductInterface} from "../../../../models";
 import {ProductHttpService} from "../../../../services/http/product-http.service";
+import {environment} from "../../../../../environments/environment";
 
 @Component({
   selector: 'product-delete-modal',
@@ -37,11 +38,9 @@ export class ProductModalDeleteComponent implements OnInit {
   }
 
   destroy(){
-    const token = window.localStorage.getItem('token');
-    this.http.delete(`http://localhost:8000/api/products/${this._productId}`,{
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
+
+    this.http.delete(`${environment.api.url}/api/products/${this._productId}`,{
+
     })
       .subscribe((product) => {
         this.onSuccess.emit(product);

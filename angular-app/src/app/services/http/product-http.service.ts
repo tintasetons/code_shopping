@@ -4,25 +4,21 @@ import {Observable} from "rxjs/internal/Observable";
 import {CategoryInterface, ProductInterface} from "../../models"
 import {map} from "rxjs/operators";
 import {HttpResource, SearchParams, SearchParamsBuild} from "./http-resource";
+import {environment} from "../../../environments/environment";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({providedIn: 'root'})
 
-export class ProductHttpService implements HttpResource<ProductInterface>{
+export class ProductHttpService implements HttpResource<ProductInterface> {
 
-  private baseUrl = `http://localhost:8000/api/products`;
+  private baseUrl = `${environment.api.url}/api/products`;
 
   constructor(private http: HttpClient) {
   }
 
-
-
   list(searchParams: SearchParams): Observable<{
     data: Array<ProductInterface>, meta: any
-    // meta: Array<PaginateInterface>
   }> {
-    const token = window.localStorage.getItem('token');
+
     const sParams = new SearchParamsBuild(searchParams).makeObject();
     const params = new HttpParams({
       fromObject: (<any>sParams)
@@ -30,62 +26,37 @@ export class ProductHttpService implements HttpResource<ProductInterface>{
     return this.http
       .get<{
         data: Array<ProductInterface>, meta: any
-        // meta: Array<PaginateInterface>
       }>
       (`${this.baseUrl}`, {
-        params,
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
+        params
       });
   }
 
   get(id: number): Observable<ProductInterface> {
-    const token = window.localStorage.getItem('token');
     return this.http
       .get<{ data: ProductInterface }>
-      (`${this.baseUrl}/${id}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      })
+      (`${this.baseUrl}/${id}`, {})
       .pipe(map(response => response.data));
   }
 
   create(data: ProductInterface) {
-    const token = window.localStorage.getItem('token');
     return this.http
       .post<{ data: ProductInterface }>
-      (`${this.baseUrl}`, data, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      })
+      (`${this.baseUrl}`, data, {})
       .pipe(map(response => response.data));
-
   }
 
   update(id: number, data: ProductInterface) {
-    const token = window.localStorage.getItem('token');
     return this.http
-      .put<{ data: ProductInterface }>(`${this.baseUrl}/${id}`, data, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      })
+      .put<{ data: ProductInterface }>(`${this.baseUrl}/${id}`, data, {})
       .pipe(
         map(data => data)
       );
   }
 
   destroy(id: number): Observable<any> {
-    const token = window.localStorage.getItem('token');
     return this.http
       .delete
-      (`${this.baseUrl}/${id}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      })
+      (`${this.baseUrl}/${id}`, {})
   }
 }

@@ -3,9 +3,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import PNotify from "pnotify/dist/es/PNotify";
 import {UserListComponent} from "./user-list.component";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({providedIn: 'root'})
 
 export class UserServiceDelete {
 

@@ -33,14 +33,13 @@ import {AuthService} from "./services/auth.service";
 import {NavbarComponent} from './components/bootstrap/navbar/navbar.component';
 import {RefreshTokenInterceptorService} from "./services/refresh-token-interceptor.service";
 import {AppRoutingModule} from "./app-routing.module";
-
-
+import {environment} from "../environments/environment";
 
 
 function jwtFactory(authService: AuthService) {
   return {
     whitelistedDomains: [
-      new RegExp(`localhost:8000/*`)
+      new RegExp(`${environment.api.host}/*`)
     ],
     tokenGetter: () => {
       return authService.getToken();
@@ -48,33 +47,33 @@ function jwtFactory(authService: AuthService) {
   }
 }
 
-
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     AlertErrorComponent,
     ModalComponent,
-
+    NumberFormatBrPipe,
+    NavbarComponent,
+    // Category
     CategoryListComponent,
     CategoryModalNewComponent,
     CategoryModalEditComponent,
     CategoryModalDeleteComponent,
-
+    // Product
     ProductListComponent,
     ProductModalNewComponent,
     ProductModalEditComponent,
     ProductModalDeleteComponent,
-
+    ProductCategoryListComponent,
+    ProductCategoryNewComponent,
+    // User
     UserListComponent,
     UserModalNewComponent,
     UserModalEditComponent,
     UserModalDeleteComponent,
 
-    NumberFormatBrPipe,
-    ProductCategoryListComponent,
-    ProductCategoryNewComponent,
-    NavbarComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -89,8 +88,6 @@ function jwtFactory(authService: AuthService) {
         deps: [AuthService]
       }
     })
-
-
   ],
   providers: [
     {

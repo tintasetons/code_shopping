@@ -7,7 +7,6 @@ export interface SearchParams {
 
 export class  SearchParamsBuild {
   constructor(private searchParams: SearchParams ){
-
   }
 
   makeObject(): SearchParams {
@@ -20,7 +19,6 @@ export class  SearchParamsBuild {
     }
     return sParams;
   }
-  
 }
 
 export interface HttpResource<T> {

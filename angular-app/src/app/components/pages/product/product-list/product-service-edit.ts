@@ -3,9 +3,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import PNotify from "pnotify/dist/es/PNotify";
 import {ProductListComponent} from "./product-list.component";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({providedIn: 'root'})
 
 export class ProductServiceEdit {
 

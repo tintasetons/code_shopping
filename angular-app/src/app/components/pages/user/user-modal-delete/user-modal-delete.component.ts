@@ -3,6 +3,7 @@ import {ModalComponent} from "../../../bootstrap/modal/modal.component";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {UserInterface} from "../../../../models";
 import {UserHttpService} from "../../../../services/http/user-http.service";
+import {environment} from "../../../../../environments/environment";
 
 @Component({
   selector: 'user-delete-modal',
@@ -37,11 +38,9 @@ export class UserModalDeleteComponent implements OnInit {
   }
 
   destroy(){
-    const token = window.localStorage.getItem('token');
-    this.http.delete(`http://localhost:8000/api/users/${this._userId}`,{
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
+
+    this.http.delete(`${environment.api.url}/api/users/${this._userId}`,{
+
     })
       .subscribe((user) => {
         this.onSuccess.emit(user);
