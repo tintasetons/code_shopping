@@ -3,18 +3,26 @@
 namespace CodeShopping\Http\Controllers\Api;
 
 use CodeShopping\Http\Controllers\Controller;
+use CodeShopping\Http\Filters\CategoryFilter;
 use CodeShopping\Http\Requests\CategoryRequest;
 use CodeShopping\Http\Resources\CategoryResource;
 use CodeShopping\Models\Category;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 
 class CategoryController extends Controller
 {
 
+
     public function index(Request $request)
     {
-        $categorias = $request->has('all')?Category::all():Category::paginate(5);
+        /** @var CategoryFilter $filter */
+        $filter = app(CategoryFilter::class);
+        /** @var Builder $filterQuery */
+        $filterQuery = Category::filtered($filter);
+       // $categorias = $filterQuery->paginate();
+        $categorias = $request->has('all')? $filterQuery->get() :$filterQuery->paginate(5);
         return  CategoryResource::collection($categorias);
     }
 
