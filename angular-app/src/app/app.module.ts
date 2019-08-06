@@ -4,7 +4,7 @@ import {JwtModule, JWT_OPTIONS} from '@auth0/angular-jwt'
 
 import {AppComponent} from './app.component';
 import {LoginComponent} from './components/pages/login/login.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AlertErrorComponent} from './components/bootstrap/alert-error/alert-error.component';
@@ -58,6 +58,7 @@ function jwtFactory(authService: AuthService) {
     ModalComponent,
     NumberFormatBrPipe,
     NavbarComponent,
+
     // Category
     CategoryListComponent,
     CategoryModalNewComponent,
@@ -87,6 +88,7 @@ function jwtFactory(authService: AuthService) {
     FormsModule,
     HttpClientModule,
     NgxPaginationModule,
+    ReactiveFormsModule,
     JwtModule.forRoot({
       jwtOptionsProvider: {
         provide: JWT_OPTIONS,

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="my-lg-4">
     <h5>Listagem de categorias </h5>
-    {{ sortColumn | json}}
+    <!--{{ sortColumn | json}}-->
   </div>
   <div class="my-4">
 
@@ -62,11 +62,11 @@
   (onSuccess)="categoryServiceInsert.onInsertSuccess($event)"
   (onError)="categoryServiceInsert.onInsertError($event)"
 ></category-new-modal>
-<category-edit-modal
-  [categoryId]="categoryId"
-  (onSuccess)="categoryServiceEdit.onEditSuccess($event)"
-  (onError)="categoryServiceEdit.onEditError($event)"
-></category-edit-modal>
+<!--<category-edit-modal-->
+  <!--[categoryId]="categoryId"-->
+  <!--(onSuccess)="categoryServiceEdit.onEditSuccess($event)"-->
+  <!--(onError)="categoryServiceEdit.onEditError($event)"-->
+<!--&gt;</category-edit-modal>-->
 
 <category-delete-modal
   [categoryId]="categoryId"
