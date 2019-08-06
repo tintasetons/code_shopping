@@ -1,6 +1,7 @@
 <div class="container">
   <div class="my-lg-4">
-    <h5>Listagem de categorias  </h5>
+    <h5>Listagem de categorias </h5>
+    {{ sortColumn | json}}
   </div>
   <div class="my-4">
     <button class="btn btn-sm btn-facebook  " type="submit" data-toggle="modal"
@@ -13,10 +14,10 @@
       <thead>
 
       <tr>
-        <th style="width: 5%">#</th>
-        <th style="width: 60%">Nome</th>
+        <th style="width: 8%" [sortColumn]="sortColumn" columnName="id" >ID</th>
+        <th style="width: 58%" [sortColumn]="sortColumn" columnName="name">Nome</th>
         <th style="width: 5%">Status</th>
-        <th style="width: 25%">Criado em:</th>
+        <th style="width: 25%"[sortColumn]="sortColumn" columnName="created_at">Criado em:</th>
         <th style="width: 10%">Ações</th>
       </tr>
       </thead>
@@ -45,7 +46,7 @@
       </tr>
       </tbody>
     </table>
-      <pagination-controls
+    <pagination-controls
       (pageChange)="paginacao.page  = pageChanged($event)"
       previousLabel="Anterior"
       nextLabel="Próximo"

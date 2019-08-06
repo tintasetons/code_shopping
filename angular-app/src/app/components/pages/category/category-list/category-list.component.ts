@@ -28,6 +28,8 @@ export class CategoryListComponent implements OnInit {
     per_page: 3,
   };
 
+  sortColumn =  { column: '', sort: '' };
+
   @ViewChild(CategoryModalNewComponent) categoryNewModal: CategoryModalNewComponent;
   @ViewChild(CategoryModalEditComponent) categoryEditModal: CategoryModalEditComponent;
   @ViewChild(CategoryModalDeleteComponent) categoryDeleteModal: CategoryModalDeleteComponent;
