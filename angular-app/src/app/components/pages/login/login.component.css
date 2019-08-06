@@ -180,6 +180,20 @@ td>a>i.fas.fa-edit{
   .form-label-group input:-ms-input-placeholder {
     color: #777;
   }
+
+  #mini-pesquisa-area {
+    padding: 3px 5px 5px 0px;
+  }
+
+  #mini-pesquisa {
+    margin-bottom: 5px;
+    padding: 5px 0px;
+    height: 36px;
+  }
+
+  #mini-pesquisa input {
+    float: left;
+  }
 }
 
 

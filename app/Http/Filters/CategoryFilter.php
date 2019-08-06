@@ -6,11 +6,11 @@ use Mnabialek\LaravelEloquentFilter\Filters\SimpleQueryFilter;
 
 class CategoryFilter extends SimpleQueryFilter
 {
-    protected $simpleFilters = ['busca'];
+    protected $simpleFilters = ['search'];
     protected $simpleSorts = ['id','name','created_at'];
 
-    protected function applyBusca($value){
-        $this->query->where('name','LIKE',"$value%");
+    protected function applySearch($value){
+        $this->query->where('name','LIKE',"%$value%");
     }
 
 }

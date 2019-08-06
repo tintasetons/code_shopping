@@ -35,6 +35,7 @@ import {RefreshTokenInterceptorService} from "./services/refresh-token-intercept
 import {AppRoutingModule} from "./app-routing.module";
 import {environment} from "../environments/environment";
 import { SortColumnComponent } from './components/common/sort-column/sort-column.component';
+import { CategorySearchFormComponent } from './components/pages/category/category-search-form/category-search-form.component';
 
 
 function jwtFactory(authService: AuthService) {
@@ -74,6 +75,7 @@ function jwtFactory(authService: AuthService) {
     UserModalEditComponent,
     UserModalDeleteComponent,
     SortColumnComponent,
+    CategorySearchFormComponent,
 
 
   ],
