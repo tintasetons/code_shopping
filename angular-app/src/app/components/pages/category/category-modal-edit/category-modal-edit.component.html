@@ -1,14 +1,15 @@
 <form (submit)="submit()">
   <modal (onHide)="hideModal($event)">
-    <h5 modal-title>Editar Categoria - {{category.name}}</h5>
+    <h5 modal-title>Editar Categoria - {{ form.get('name').value}}</h5>
     <div modal-body>
       <div modal-body>
-        <!--<category-form [category]="category"></category-form>-->
+        Form {{form.valid}}{{form.value | json}}
+       <category-form [form]="form"></category-form>
       </div>
     </div>
     <div modal-footer>
       <button type="button" style="margin-right : 1rem" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-      <button type="submit" class="btn btn-primary">Editar</button>
+      <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Editar</button>
     </div>
   </modal>
 </form>

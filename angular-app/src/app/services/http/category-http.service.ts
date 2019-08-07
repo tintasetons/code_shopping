@@ -11,10 +11,15 @@ import {environment} from "../../../environments/environment";
 
 export class CategoryHttpService implements HttpResource<CategoryInterface> {
 
+  clearForm = {
+    name: '',
+    active: true
+  };
+
+
   private baseUrl = `${environment.api.url}/api/categories`;
 
   constructor(private http: HttpClient, private authService: AuthService) {
-
   }
 
   list(searchParams: SearchParams): Observable<{
@@ -62,6 +67,5 @@ export class CategoryHttpService implements HttpResource<CategoryInterface> {
       .delete
       (`${this.baseUrl}/${id}`, {})
   }
-
 
 }

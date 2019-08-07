@@ -10,35 +10,31 @@ import {FormBuilder, FormGroup} from "@angular/forms";
   styleUrls: ['./category-modal-new.component.css']
 })
 export class CategoryModalNewComponent implements OnInit {
-  //
-  // category: CategoryInterface = {
-  //   name: '',
-  //   active: true
-  // };
+
+  form: FormGroup;
+
   @ViewChild(ModalComponent) modal: ModalComponent;
 
   @Output() onSuccess: EventEmitter<any> = new EventEmitter<any>();
   @Output() onError: EventEmitter<HttpErrorResponse> = new EventEmitter<HttpErrorResponse>();
 
-  private form: FormGroup;
 
   constructor(public categoryHttp: CategoryHttpService, formBuilder: FormBuilder) {
-      this.form = formBuilder.group({
-        name:'',
-        active: true
-      });
+    this.form = formBuilder.group(
+      this.categoryHttp.clearForm);
   }
 
   ngOnInit() {
   }
 
   submit() {
-    // this.categoryHttp
-    //   .create(this.category)
-    //   .subscribe((category) => {
-    //     this.onSuccess.emit(category);
-    //     this.modal.hide();
-    //   }, error => this.onError.emit(error));
+    this.categoryHttp
+      .create(this.form.value)
+      .subscribe((category) => {
+        this.form.reset(this.categoryHttp.clearForm);
+        this.onSuccess.emit(category);
+        this.modal.hide();
+      }, error => this.onError.emit(error));
   }
 
   public showModal() {

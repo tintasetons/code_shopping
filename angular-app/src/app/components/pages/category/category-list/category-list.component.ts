@@ -7,6 +7,10 @@ import {CategoryInterface} from "../../../../models";
 import {CategoryServiceInsert} from "./category-service-insert";
 import {CategoryServiceEdit} from "./category-service-edit";
 import {CategoryServiceDelete} from "./category-service-delete";
+import {Observable} from "rxjs";
+import {environment} from "../../../../../environments/environment";
+import {tap} from "rxjs/operators";
+
 
 
 @Component({
@@ -17,7 +21,6 @@ import {CategoryServiceDelete} from "./category-service-delete";
 
 
 export class CategoryListComponent implements OnInit {
-
 
   categories: Array<CategoryInterface> = [];
 
@@ -77,4 +80,5 @@ export class CategoryListComponent implements OnInit {
     this.searchText = search;
     this.getCategories();
   }
+
 }
