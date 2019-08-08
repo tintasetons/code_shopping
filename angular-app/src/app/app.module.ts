@@ -37,6 +37,9 @@ import {environment} from "../environments/environment";
 import { SortColumnComponent } from './components/common/sort-column/sort-column.component';
 import { CategorySearchFormComponent } from './components/pages/category/category-search-form/category-search-form.component';
 import { CategoryFormComponent } from './components/pages/category/category-form/category-form.component';
+import { FieldErrorComponent } from './components/bootstrap/field-error/field-error.component';
+import { IsInvalidDirective } from './directives/is-invalid.directive';
+
 
 
 function jwtFactory(authService: AuthService) {
@@ -79,6 +82,8 @@ function jwtFactory(authService: AuthService) {
     SortColumnComponent,
     CategorySearchFormComponent,
     CategoryFormComponent,
+    FieldErrorComponent,
+    IsInvalidDirective,
 
 
   ],

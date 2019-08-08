@@ -15,13 +15,13 @@ class CategoryController extends Controller
 {
 
 
-    public function index(Request $request)
+   public function index(Request $request)
     {
         /** @var CategoryFilter $filter */
         $filter = app(CategoryFilter::class);
         /** @var Builder $filterQuery */
         $filterQuery = Category::filtered($filter);
-       // $categorias = $filterQuery->paginate();
+        // $categorias = $filterQuery->paginate();
         $categorias = $request->has('all')? $filterQuery->get() :$filterQuery->paginate(5);
         return  CategoryResource::collection($categorias);
     }
