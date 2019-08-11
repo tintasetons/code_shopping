@@ -12,10 +12,10 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 })
 export class CategoryModalEditComponent implements OnInit {
 
-  category: CategoryInterface = {
-    name: '',
-    active: true
-  };
+  // category: CategoryInterface = {
+  //   name: '',
+  //   active: true
+  // };
 
   _categoryId: number;
 

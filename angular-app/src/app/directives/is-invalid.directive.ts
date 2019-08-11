@@ -20,6 +20,5 @@ export class IsInvalidDirective {
         nativeElement.classList.remove('is-invalid');
       }
     });
-  }
-
+  };
 }

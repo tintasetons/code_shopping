@@ -39,6 +39,10 @@ import { CategorySearchFormComponent } from './components/pages/category/categor
 import { CategoryFormComponent } from './components/pages/category/category-form/category-form.component';
 import { FieldErrorComponent } from './components/bootstrap/field-error/field-error.component';
 import { IsInvalidDirective } from './directives/is-invalid.directive';
+import {ListErrorComponent} from "./components/bootstrap/list-error/list-error.component";
+import { CardErrorComponent } from './components/bootstrap/card-error/card-error.component';
+import {Select2Module} from 'ng2-select2'
+
 
 
 
@@ -84,6 +88,8 @@ function jwtFactory(authService: AuthService) {
     CategoryFormComponent,
     FieldErrorComponent,
     IsInvalidDirective,
+    ListErrorComponent,
+    CardErrorComponent,
 
 
   ],
@@ -91,9 +97,10 @@ function jwtFactory(authService: AuthService) {
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     NgxPaginationModule,
-    ReactiveFormsModule,
+    Select2Module,
     JwtModule.forRoot({
       jwtOptionsProvider: {
         provide: JWT_OPTIONS,
@@ -112,4 +119,5 @@ function jwtFactory(authService: AuthService) {
   bootstrap: [AppComponent]
 })
 export class AppModule {
+
 }

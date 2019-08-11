@@ -29,6 +29,13 @@ export interface UserInterface {
   email: string,
   password?: string,
   readonly created_at?: { date: string },
-  readonly updated_at?: { date: string }  
-  
+  readonly updated_at?: { date: string }
+}
+
+export interface ProductInputInterface {
+  id?: number
+  amount: number
+  readonly created_at?: {date: string}
+  readonly updated_at?: {date: string}
+  product: ProductInterface
 }

@@ -20,6 +20,7 @@ import {tap} from "rxjs/operators";
 })
 
 
+
 export class CategoryListComponent implements OnInit {
 
   categories: Array<CategoryInterface> = [];

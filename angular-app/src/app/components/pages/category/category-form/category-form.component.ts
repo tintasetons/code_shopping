@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
-import {CategoryInterface} from "../../../../models";
 import {FormGroup} from "@angular/forms";
+import fieldOptions from "./category-fields-options";
 
 @Component({
   selector: 'category-form',
@@ -22,20 +22,8 @@ export class CategoryFormComponent implements OnInit {
     this.changeRef.detectChanges();
   }
 
-  get fieldsOptions() {
-    return {
-      name: {
-        id: 'name',
-        label: 'Nome',
-        validationMessage: {
-          maxlegth: 191,
-        }
-      },
-      active: {
-        id: 'active',
-        label: 'Ativo',
-      }
-    }
+  get fieldsOptions(): any {
+    return fieldOptions;
   }
 
   // get name(){

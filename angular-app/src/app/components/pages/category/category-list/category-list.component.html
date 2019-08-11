@@ -4,19 +4,18 @@
     <!--{{ sortColumn | json}}-->
   </div>
   <div class="my-4">
-
   </div>
   <div class="row my-2">
     <table class="table table-striped">
       <thead>
-      <td >
+      <td>
         <button class="btn btn-sm btn-facebook  " type="submit" data-toggle="modal"
                 (click)="categoryServiceInsert.showModalInsert()"
                 data-target="#modalExemplo">Nova Categoria
         </button>
       </td>
       <td colspan="4">
-        <category-search-form (onSearch)="search($event)" ></category-search-form>
+        <category-search-form (onSearch)="search($event)"></category-search-form>
       </td>
       <tr>
         <th style="width: 8%" [sortColumn]="sortColumn" columnName="id" (onSort)="sort($event)">ID</th>
